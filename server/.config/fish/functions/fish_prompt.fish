@@ -1,1 +1,1 @@
-shell/.config/fish/functions/fish_prompt.fish
+../../../../shell/.config/fish/functions/fish_prompt.fish

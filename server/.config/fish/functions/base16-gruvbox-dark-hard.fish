@@ -1,1 +1,1 @@
-shell/.config/fish/functions/base16-gruvbox-dark-hard.fish
+../../../../shell/.config/fish/functions/base16-gruvbox-dark-hard.fish

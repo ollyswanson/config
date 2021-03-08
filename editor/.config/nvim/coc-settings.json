@@ -19,5 +19,7 @@
   "java.project.referencedLibraries": [
     "/Users/oliverswanson/tutorials/algos/CourseraAlgos/lib/algs4.jar"
   ],
-  "pairs.enableBackspace": true
+  "pairs.enableBackspace": true,
+  "typescript.suggest.completeFunctionCalls": false,
+  "javascript.suggest.completeFunctionCalls": false
 }

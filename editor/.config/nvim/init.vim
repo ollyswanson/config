@@ -15,6 +15,7 @@ set noswapfile
 set undodir=~/.vim/undodir
 set undofile
 set incsearch
+set encoding=utf-8
 
 set mouse=a
 

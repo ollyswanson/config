@@ -24,11 +24,6 @@ function M.map(mode, key, fn, opts)
   vim.api.nvim_set_keymap(mode, key, fn, opts or {})
 end
 
--- Buffer local keymap
-function M.buf_map(...)
-  vim.api.nvim_buf_set_keymap(bufnr, ...)
-end
-
 function M.apply_colorscheme(name, mode)
     M.opt('o', 'termguicolors', true)
     M.opt('o', 'guicursor', 'n-v-c-sm:block,i-ci-ve:ver50-Cursor,r-cr-o:hor50')

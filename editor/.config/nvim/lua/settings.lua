@@ -1,6 +1,5 @@
 local opt = require('utils').opt
 
-
 -- use Bash
 opt('o', 'shell', '/bin/bash')
 
@@ -54,7 +53,7 @@ opt('o', 'splitbelow', true)
 opt('o', 'splitright', true)
 
 -- space for displaying messages
-opt('o', 'cmdheight', 2)
+opt('o', 'cmdheight', 1)
 
 -- start scrolling window when we reach given offset
 opt('o', 'scrolloff', 6)

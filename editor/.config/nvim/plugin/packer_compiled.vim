@@ -36,9 +36,18 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/oliverswanson/.local/share/nvim/site/pack/packer/start/completion-treesitter"
   },
+  ["galaxyline.nvim"] = {
+    config = { "\27LJ\2\n2\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\23plugins.galaxyline\frequire\0" },
+    loaded = true,
+    path = "/Users/oliverswanson/.local/share/nvim/site/pack/packer/start/galaxyline.nvim"
+  },
   ["gruvbox-material"] = {
     loaded = true,
     path = "/Users/oliverswanson/.local/share/nvim/site/pack/packer/start/gruvbox-material"
+  },
+  ["lsp-status.nvim"] = {
+    loaded = true,
+    path = "/Users/oliverswanson/.local/share/nvim/site/pack/packer/start/lsp-status.nvim"
   },
   ["nvim-compe"] = {
     config = { "\27LJ\2\n2\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\23plugins.completion\frequire\0" },
@@ -59,6 +68,10 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/oliverswanson/.local/share/nvim/site/pack/packer/start/nvim-treesitter-refactor"
   },
+  ["nvim-web-devicons"] = {
+    loaded = true,
+    path = "/Users/oliverswanson/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
+  },
   ["packer.nvim"] = {
     loaded = false,
     needs_bufread = false,
@@ -70,10 +83,12 @@ _G.packer_plugins = {
   }
 }
 
--- Config for: nvim-treesitter
-try_loadstring("\27LJ\2\n2\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\23plugins.treesitter\frequire\0", "config", "nvim-treesitter")
 -- Config for: nvim-lspconfig
 try_loadstring("\27LJ\2\n#\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\blsp\frequire\0", "config", "nvim-lspconfig")
+-- Config for: galaxyline.nvim
+try_loadstring("\27LJ\2\n2\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\23plugins.galaxyline\frequire\0", "config", "galaxyline.nvim")
+-- Config for: nvim-treesitter
+try_loadstring("\27LJ\2\n2\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\23plugins.treesitter\frequire\0", "config", "nvim-treesitter")
 -- Config for: nvim-compe
 try_loadstring("\27LJ\2\n2\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\23plugins.completion\frequire\0", "config", "nvim-compe")
 END

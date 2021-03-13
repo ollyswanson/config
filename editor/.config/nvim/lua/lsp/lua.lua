@@ -1,3 +1,5 @@
+local on_attach = require('lsp.on_attach')
+
 USER = vim.fn.expand('$USER')
 
 -- OSX
@@ -7,7 +9,7 @@ local sumneko_binary = sumneko_root_path .. "/bin/macOS/lua-language-server"
 local lsp_config = require('lspconfig')
 
 lsp_config.sumneko_lua.setup({
-  on_attach = require('compe').on_attach,
+  on_attach = on_attach,
   cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
   settings = {
 	Lua = {

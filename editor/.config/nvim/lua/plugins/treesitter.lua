@@ -7,7 +7,7 @@ require('nvim-treesitter.configs').setup({
         enable = true,
         disable = { "toml" },
         queries = {
-           rust = read_query("~/.config/nvim/queries/rust/highlights.scm")
+--           rust = read_query("~/.config/nvim/queries/rust/highlights.scm")
         }
     },
     indent = {

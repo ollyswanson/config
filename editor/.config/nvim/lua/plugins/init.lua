@@ -28,5 +28,18 @@ require('packer').startup(function()
     config = function() require('plugins.completion') end
   }
 
+    use {
+        'nvim-lua/lsp-status.nvim'
+    }
+
+    use {
+    'glepnir/galaxyline.nvim',
+        branch = 'main',
+        -- your statusline
+        config = function() require('plugins.galaxyline') end,
+        -- some optional icons
+        requires = {'kyazdani42/nvim-web-devicons', opt = true}
+    }
+
   use 'sainnhe/gruvbox-material'
 end)

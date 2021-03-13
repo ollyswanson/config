@@ -1,3 +1,4 @@
-local lsp = vim.lsp
-
 require('lsp.lua')
+require('lsp.rust')
+
+require('lsp.status').activate()

@@ -1,4 +1,4 @@
-vim.cmd[[packadd packer.nvim]]
+vim.cmd [[packadd packer.nvim]]
 
 -- packer.nvim configuration and plugins
 require('packer').startup(function()
@@ -7,39 +7,62 @@ require('packer').startup(function()
 
   use 'tpope/vim-surround'
 
-  use { 'nvim-treesitter/nvim-treesitter',
+  use {
+    'nvim-treesitter/nvim-treesitter',
     requires = {
-        'nvim-treesitter/nvim-treesitter-refactor',
-        {
-            'nvim-treesitter/completion-treesitter',
-            run = function() vim.cmd [[TSUpdate]] end
-        }
+      'nvim-treesitter/nvim-treesitter-refactor', {
+        'nvim-treesitter/completion-treesitter',
+        run = function()
+          vim.cmd [[TSUpdate]]
+        end
+      }
     },
-    config = function() require('plugins.treesitter') end
-    }
+    config = function()
+      require('plugins.treesitter')
+    end
+  }
 
   use {
     'neovim/nvim-lspconfig',
-    config = function() require('lsp') end
+    config = function()
+      require('lsp')
+    end
   }
 
   use {
     'hrsh7th/nvim-compe',
-    config = function() require('plugins.completion') end
+    config = function()
+      require('plugins.completion')
+    end
   }
 
-    use {
-        'nvim-lua/lsp-status.nvim'
-    }
+  use {'nvim-lua/lsp-status.nvim'}
 
-    use {
+  use {
     'glepnir/galaxyline.nvim',
-        branch = 'main',
-        -- your statusline
-        config = function() require('plugins.galaxyline') end,
-        -- some optional icons
-        requires = {'kyazdani42/nvim-web-devicons', opt = true}
-    }
+    branch = 'main',
+    -- your statusline
+    config = function()
+      require('plugins.galaxyline')
+    end,
+    -- some optional icons
+    requires = {'kyazdani42/nvim-web-devicons', opt = true}
+  }
+
+  use {
+    'nvim-telescope/telescope.nvim',
+    requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}},
+    config = function()
+      require('plugins.telescope')
+    end
+  }
 
   use 'sainnhe/gruvbox-material'
+
+  use {
+    'glepnir/lspsaga.nvim',
+    config = function()
+      require('plugins.saga')
+    end
+  }
 end)

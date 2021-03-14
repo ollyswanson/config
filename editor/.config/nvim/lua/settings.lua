@@ -19,7 +19,7 @@ opt('o', 'mouse', 'a')
 opt('o', 'clipboard', 'unnamedplus')
 
 -- undo file
-opt('o', 'undodir', 'undodir')
+opt('o', 'undodir', '$HOME/.vim/undodir')
 opt('b', 'undofile', true)
 
 -- nice tabs
@@ -45,6 +45,9 @@ opt('w', 'number', true)
 opt('w', 'relativenumber', true)
 opt('w', 'signcolumn', 'yes')
 
+-- cursor line highlighting
+opt('w', 'cursorline', true)
+
 -- line wrap.
 opt('w', 'wrap', false)
 
@@ -55,5 +58,15 @@ opt('o', 'splitright', true)
 -- space for displaying messages
 opt('o', 'cmdheight', 1)
 
+-- Don't need to see which mode I'm in
+opt('o', 'showmode', false)
+
 -- start scrolling window when we reach given offset
 opt('o', 'scrolloff', 6)
+
+-- find a better place for these
+vim.cmd [[augroup Tabs]]
+vim.cmd [[  autocmd FileType javascript,typescript,javascriptreact,typescriptreact,javascript.jsx,typescript.tsx,lua set shiftwidth=2]]
+vim.cmd [[  autocmd FileType javascript,typescript,javascriptreact,typescriptreact,javascript.jsx,typescript.tsx,lua set tabstop=2]]
+vim.cmd [[  autocmd FileType javascript,typescript,javascriptreact,typescriptreact,javascript.jsx,typescript.tsx,lua set softtabstop=2]]
+vim.cmd [[augroup END]]

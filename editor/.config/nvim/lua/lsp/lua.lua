@@ -9,26 +9,27 @@ local sumneko_binary = sumneko_root_path .. "/bin/macOS/lua-language-server"
 local lsp_config = require('lspconfig')
 
 lsp_config.sumneko_lua.setup({
-  on_attach = on_attach,
-  cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
-  settings = {
-	Lua = {
-    runtime = {
-      -- Tell the language server which version to use (LuaJIT in the case of neovim)
-      version = 'LuaJIT',
-      -- Setup your Lua path
-      path = vim.split(package.path, ';')
-    },
-    -- Get the language server to recognize the vim global
-    diagnostics = {
-      globals = {'vim', 'use'}
-    },
-    workspace = {
-      -- Make the server aware of Neovim runtime files
-      library = {
-        [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-        [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
-      },},
-    },
-  },
+    on_attach = on_attach,
+    cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
+    settings = {
+        Lua = {
+            runtime = {
+                -- Tell the language server which version to use (LuaJIT in the case of neovim)
+                version = 'LuaJIT',
+                -- Setup your Lua path
+                path = vim.split(package.path, ';')
+            },
+            -- Get the language server to recognize the vim global
+            diagnostics = {globals = {'vim', 'use'}},
+            workspace = {
+                -- Make the server aware of Neovim runtime files
+                library = {[vim.fn.expand('$VIMRUNTIME/lua')] = true, [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true}
+            }
+        }
+    }
 })
+
+-- Format command for lua
+vim.cmd [[augroup LuaFormat]]
+vim.cmd [[  autocmd BufWritePre *.lua lua vim.lsp.buf.formatting_sync(nil, 100)]]
+vim.cmd [[augroup END]]

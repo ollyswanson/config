@@ -19,8 +19,11 @@ opt('o', 'mouse', 'a')
 opt('o', 'clipboard', 'unnamedplus')
 
 -- undo file
-opt('o', 'undodir', '$HOME/.vim/undodir')
+opt('o', 'undodir', '/Users/oliverswanson/.vim/undodir')
 opt('b', 'undofile', true)
+
+-- swap file
+opt('b', 'swapfile', false)
 
 -- nice tabs
 local indent = 4
@@ -66,7 +69,7 @@ opt('o', 'scrolloff', 6)
 
 -- find a better place for these
 vim.cmd [[augroup Tabs]]
-vim.cmd [[  autocmd FileType javascript,typescript,javascriptreact,typescriptreact,javascript.jsx,typescript.tsx,lua set shiftwidth=2]]
-vim.cmd [[  autocmd FileType javascript,typescript,javascriptreact,typescriptreact,javascript.jsx,typescript.tsx,lua set tabstop=2]]
-vim.cmd [[  autocmd FileType javascript,typescript,javascriptreact,typescriptreact,javascript.jsx,typescript.tsx,lua set softtabstop=2]]
+vim.cmd [[  autocmd FileType javascript,typescript,javascriptreact,typescriptreact,javascript.jsx,typescript.tsx,lua,yaml set shiftwidth=2]]
+vim.cmd [[  autocmd FileType javascript,typescript,javascriptreact,typescriptreact,javascript.jsx,typescript.tsx,lua,yaml set tabstop=2]]
+vim.cmd [[  autocmd FileType javascript,typescript,javascriptreact,typescriptreact,javascript.jsx,typescript.tsx,lua,yaml set softtabstop=2]]
 vim.cmd [[augroup END]]

@@ -21,6 +21,7 @@ map('l', '<C-k>', '<Esc>', {noremap = true})
 map('t', '<C-k>', '<Esc>', {noremap = true})
 
 map('n', '<leader>e', ':e <C-R>=expand("%:p:h") . "/" <CR>', {noremap = true})
+map('n', 'sw', ':%s/<C-R><C-W>//g<left><left>', {noremap = true})
 map('n', '<leader><leader>', ':noh<CR>', {noremap = true})
 
 map('n', '<C-h>', '<C-w>h', {noremap = true})

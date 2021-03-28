@@ -57,7 +57,8 @@ require('packer').startup(function()
     end
   }
 
-  use 'sainnhe/gruvbox-material'
+  -- use 'sainnhe/gruvbox-material'
+  use 'sainnhe/everforest'
 
   use {
     'glepnir/lspsaga.nvim',
@@ -65,4 +66,16 @@ require('packer').startup(function()
       require('plugins.saga')
     end
   }
+
+  use 'nvim-lua/lsp_extensions.nvim'
+
+  use {
+    'mhartington/formatter.nvim',
+    config = function()
+      require('plugins.formatter')
+    end
+  }
+
+  -- remove once treesitter has been updated
+  --  use 'HerringtonDarkholme/yats.vim'
 end)

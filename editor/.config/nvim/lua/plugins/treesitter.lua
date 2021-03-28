@@ -1,8 +1,9 @@
 local read_query = function(filename)
   return table.concat(vim.fn.readfile(vim.fn.expand(filename)))
 end
+
 require('nvim-treesitter.configs').setup({
-  ensure_installed = "maintained",
+  ensure_installed = {},
   highlight = {
     enable = true,
     disable = {"toml"},
@@ -10,7 +11,7 @@ require('nvim-treesitter.configs').setup({
       --           rust = read_query("~/.config/nvim/queries/rust/highlights.scm")
     }
   },
-  indent = {enable = true, disable = {"toml"}},
+  indent = {enable = true, disable = {"toml", "rust"}},
   incremental_selection = {enable = true, disable = {"toml"}},
   textobjects = {enable = true, disable = {"toml"}},
   refactor = {

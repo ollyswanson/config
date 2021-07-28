@@ -19,7 +19,15 @@ require('formatter').setup({
     scss = {prettier},
     json = {prettier},
     markdown = {prettier},
-    yaml = {prettier},
+    yaml = {
+      function()
+        return {
+          exe = "prettier",
+          args = {"--single-quote", "--stdin-filepath", vim.api.nvim_buf_get_name(0)},
+          stdin = true
+        }
+      end
+    },
     html = {prettier},
     rust = {
       function()

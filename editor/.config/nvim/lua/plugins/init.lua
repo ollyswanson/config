@@ -29,6 +29,8 @@ require('packer').startup(function()
     end
   }
 
+  use 'kabouzeid/nvim-lspinstall'
+
   use {
     'hrsh7th/nvim-compe',
     config = function()
@@ -73,6 +75,13 @@ require('packer').startup(function()
     'mhartington/formatter.nvim',
     config = function()
       require('plugins.formatter')
+    end
+  }
+
+  use {
+    'b3nj5m1n/kommentary',
+    config = function()
+      require('plugins.kommentary')
     end
   }
 

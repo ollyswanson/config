@@ -6,16 +6,15 @@ require('nvim-treesitter.configs').setup({
   ensure_installed = {},
   highlight = {
     enable = true,
-    disable = {"toml"},
     queries = {
       --           rust = read_query("~/.config/nvim/queries/rust/highlights.scm")
     }
   },
-  indent = {enable = true, disable = {"toml", "rust"}},
-  incremental_selection = {enable = true, disable = {"toml"}},
-  textobjects = {enable = true, disable = {"toml"}},
+  indent = {enable = true, disable = {"rust", "tsx", "typescript"}},
+  incremental_selection = {enable = true},
+  textobjects = {enable = true},
   refactor = {
-    highlight_definitions = {enable = true, disable = {"toml"}},
-    smart_rename = {enable = true, disable = {"toml"}, keymaps = {smart_rename = "grr"}}
+    highlight_definitions = {enable = true},
+    smart_rename = {enable = true, keymaps = {smart_rename = "grr"}}
   }
 })

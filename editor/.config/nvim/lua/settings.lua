@@ -1,4 +1,5 @@
 local opt = require('utils').opt
+local create_augroups = require('utils').nvim_create_augroups
 
 -- use Bash
 opt('o', 'shell', '/bin/bash')
@@ -68,8 +69,13 @@ opt('o', 'showmode', false)
 opt('o', 'scrolloff', 6)
 
 -- find a better place for these
-vim.cmd [[augroup Tabs]]
-vim.cmd [[  autocmd FileType javascript,typescript,javascriptreact,typescriptreact,javascript.jsx,typescript.tsx,lua,yaml set shiftwidth=2]]
-vim.cmd [[  autocmd FileType javascript,typescript,javascriptreact,typescriptreact,javascript.jsx,typescript.tsx,lua,yaml set tabstop=2]]
-vim.cmd [[  autocmd FileType javascript,typescript,javascriptreact,typescriptreact,javascript.jsx,typescript.tsx,lua,yaml set softtabstop=2]]
-vim.cmd [[augroup END]]
+local file_types =
+    'javascript,typescript,javascriptreact,typescriptreact,javascript.jsx,typescript.tsx,lua,yaml'
+
+create_augroups({
+  spacing = {
+    {'FileType ' .. file_types .. ' set shiftwidth=2'},
+    {'FileType ' .. file_types .. ' set tabstop=2'}, {'FileType ' .. file_types .. ' set tabstop=2'}
+  }
+})
+

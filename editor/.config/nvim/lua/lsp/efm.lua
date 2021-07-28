@@ -1,12 +1,16 @@
-local lsp_config = require('lspconfig')
+local utils = require('utils')
 
 local lua = {
   formatCommand = "lua-format -i --no-keep-simple-function-one-line --no-break-after-operator --column-limit=100 --break-after-table-lb --indent-width=2",
   formatStdin = true
 }
 
+utils.nvim_create_augroups({
+  LuaFormat = {'BufWritePre *.lua lua vim.lsp.buf.formatting_sync(nil, 100)'}
+})
+
 local eslint = {
-  lintCommand = "eslint_d -f unix --stdin --stdin-filename ${INPUT}",
+  lintCommand = "eslint_d -f visualstudio --stdin --stdin-filename ${INPUT}",
   lintStdin = true,
   lintFormats = {"%f:%l:%c: %m"},
   lintIgnoreExitCode = true,
@@ -14,15 +18,16 @@ local eslint = {
   formatStdin = true
 }
 
-require"lspconfig".efm.setup {
+local languages = {
+  lua = {lua},
+  javascript = {eslint},
+  typescript = {eslint},
+  javascriptreact = {eslint},
+  typescriptreact = {eslint}
+}
+
+return {
+  filetypes = vim.tbl_keys(languages),
   init_options = {documentFormatting = true},
-  filetypes = {"javascript", "typescript", "javascriptreact", "typescriptreact", "lua"},
-  root_dir = function(fname)
-    return lsp_config.util.root_pattern("tsconfig.json")(fname)
-               or lsp_config.util.root_pattern(".eslintrc.js", ".git")(fname);
-  end,
-  settings = {
-    rootMarkers = {".eslintrc.js", ".git/"},
-    languages = {javascript = {eslint}, typescript = {eslint}, lua = {lua}}
-  }
+  settings = {rootMarkers = {"package.json", ".git/"}, languages = languages}
 }

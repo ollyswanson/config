@@ -5,10 +5,7 @@ local on_attach = require('lsp.on_attach')
 local function make_config()
   local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-  return {
-    capabilities = capabilities,
-    on_attach = on_attach,
-  }
+  return {capabilities = capabilities, on_attach = on_attach}
 end
 
 local function setup_servers()
@@ -19,13 +16,11 @@ local function setup_servers()
   for _, server in pairs(servers) do
     local config = make_config()
 
-    if server == "lua" then
-      config.settings = require('lsp.lua')
-    end
+    if server == "lua" then config.settings = require('lsp.lua') end
 
-    if server == "efm" then
-      config = vim.tbl_extend("force", config, require("lsp.efm"))
-    end
+    if server == "rust" then config.settings = require('lsp.rust') end
+
+    if server == "efm" then config = vim.tbl_extend("force", config, require("lsp.efm")) end
 
     lspconfig[server].setup(config)
   end

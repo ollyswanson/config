@@ -85,6 +85,10 @@ require('packer').startup(function()
     end
   }
 
+  use {
+      'kyazdani42/nvim-tree.lua',
+      requires = 'kyazdani42/nvim-web-devicons'
+  }
   -- remove once treesitter has been updated
   --  use 'HerringtonDarkholme/yats.vim'
 end)

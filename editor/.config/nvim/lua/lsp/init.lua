@@ -1,6 +1,5 @@
 require('lsp.rust')
 require('lsp.efm')
-require('lsp.typescript')
 require('lsp.status').activate()
 require('lsp.lspinstall')
 require('lsp.extensions')

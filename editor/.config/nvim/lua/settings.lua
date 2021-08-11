@@ -20,7 +20,7 @@ opt('o', 'mouse', 'a')
 opt('o', 'clipboard', 'unnamedplus')
 
 -- undo file
-opt('o', 'undodir', '/Users/oliverswanson/.vim/undodir')
+opt('o', 'undodir', '/Users/' .. vim.env.USER .. '/.vim/undodir')
 opt('b', 'undofile', true)
 
 -- swap file

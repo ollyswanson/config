@@ -1,6 +1,8 @@
 abbr -a e nvim
 abbr -a gs 'git status'
 
+setenv DOTFILES $HOME/dotfiles
+
 # Type d to move to top parent dir which is a repository
 function d
 	while test $PWD != "/"
@@ -10,6 +12,23 @@ function d
 		cd ..
 	end
 end
+
+function conf
+    cd $DOTFILES
+end
+
+function cdf
+    cd $HOME
+    cd (fd --type directory --follow | fzf)
+end
+
+if functions -q fzf_key_bindings
+    fzf_key_bindings
+end
+
+setenv FZF_DEFAULT_COMMAND 'fd --type file --follow --hidden --exclude ".git"'
+setenv FZF_CTRL_T_COMMAND 'fd --type directory --follow --hidden --exclude ".git"'
+setenv FZF_DEFAULT_OPTS '--height 40%'
 
 # colored man output
 # from http://linuxtidbits.wordpress.com/2009/03/23/less-colors-for-man-pages/

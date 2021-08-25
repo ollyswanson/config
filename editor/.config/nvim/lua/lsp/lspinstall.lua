@@ -1,9 +1,11 @@
 local lspinstall = require('lspinstall')
 local lspconfig = require('lspconfig')
 local on_attach = require('lsp.on_attach')
+local utils = require('utils')
+local make_capabilities = require('lsp.capabilities').make_capabilities
 
 local function make_config()
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  local capabilities = make_capabilities()
 
   return {capabilities = capabilities, on_attach = on_attach}
 end
@@ -22,8 +24,12 @@ local function setup_servers()
 
     if server == "efm" then config = vim.tbl_extend("force", config, require("lsp.efm")) end
 
-    lspconfig[server].setup(config)
+    if server ~= "java" then lspconfig[server].setup(config) end
   end
+
+  utils.augroup('lsp_define', [[
+    autocmd FileType java lua require('jdtls').start_or_attach(require('filetypes.java').jdtls_config())
+  ]])
 end
 
 setup_servers()

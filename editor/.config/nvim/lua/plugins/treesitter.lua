@@ -10,7 +10,7 @@ require('nvim-treesitter.configs').setup({
       --           rust = read_query("~/.config/nvim/queries/rust/highlights.scm")
     }
   },
-  indent = {enable = true, disable = {"rust", "tsx", "typescript"}},
+  indent = {enable = true, disable = {"rust"}},
   incremental_selection = {enable = true},
   textobjects = {enable = true},
   refactor = {

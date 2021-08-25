@@ -40,6 +40,7 @@ setenv LESS_TERMCAP_so \e'[38;5;246m'    # begin standout-mode - info box
 setenv LESS_TERMCAP_ue \e'[0m'           # end underline
 setenv LESS_TERMCAP_us \e'[04;38;5;146m' # begin underline
 setenv EDITOR nvim
+setenv JAVA_HOME (/usr/libexec/java_home -v 11) 
 
 # nvm / node stuff
 function nvm
@@ -50,3 +51,4 @@ base16-gruvbox-dark-hard
 
 set -x NVM_DIR ~/.nvm
 nvm use default --silent
+

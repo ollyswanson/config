@@ -32,11 +32,14 @@ require('packer').startup(function()
   use 'kabouzeid/nvim-lspinstall'
 
   use {
-    'hrsh7th/nvim-compe',
+    'hrsh7th/nvim-cmp',
     config = function()
-      require('plugins.completion')
+      require('plugins.completion').cmp_setup()
     end
   }
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-nvim-lua'
 
   use {'nvim-lua/lsp-status.nvim'}
 
@@ -85,10 +88,17 @@ require('packer').startup(function()
     end
   }
 
+  use {'kyazdani42/nvim-tree.lua', requires = 'kyazdani42/nvim-web-devicons'}
+
+  use 'mfussenegger/nvim-dap'
+
+  use 'mfussenegger/nvim-jdtls'
+
   use {
-      'kyazdani42/nvim-tree.lua',
-      requires = 'kyazdani42/nvim-web-devicons'
+    "folke/which-key.nvim",
+    config = function()
+      require("which-key").setup(require('plugins.olly.which-key').settings)
+    end
   }
-  -- remove once treesitter has been updated
-  --  use 'HerringtonDarkholme/yats.vim'
+
 end)

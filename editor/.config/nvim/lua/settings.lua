@@ -70,7 +70,7 @@ opt('o', 'scrolloff', 6)
 
 -- find a better place for these
 local file_types =
-    'javascript,typescript,javascriptreact,typescriptreact,javascript.jsx,typescript.tsx,lua,yaml'
+    'javascript,typescript,javascriptreact,typescriptreact,javascript.jsx,typescript.tsx,lua,yaml,java'
 
 create_augroups({
   spacing = {

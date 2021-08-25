@@ -4,6 +4,8 @@ local cmp = require('cmp')
 local utils = require('utils')
 
 function M.cmp_setup()
+  vim.cmd [[set shortmess+=c]]
+
   utils.augroup('lua_completion', [[
     autocmd FileType lua lua require('cmp').setup.buffer({sources={{name = 'buffer'},{name = 'nvim_lsp'},{name = 'nvim_lua'}}})
   ]])

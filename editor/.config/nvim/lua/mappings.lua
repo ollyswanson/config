@@ -53,7 +53,7 @@ function M.lsp_mappings(client, bufnr)
   end
 
   buf_map('n', 'K', "<cmd>lua vim.lsp.buf.hover()<CR>")
-  buf_map('i', '<C-i>', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
+  buf_map('i', '<C-h>', '<cmd>lua vim.lsp.buf.signature_help()<CR>')
 
   wk({
     g = {
@@ -84,13 +84,13 @@ function M.lsp_mappings(client, bufnr)
       d = {'<cmd>Telescope lsp_document_diagnostics<CR>', 'document'},
       w = {'<cmd> Telescope lsp_workspace_diagnostics<CR>', 'workspace'},
       q = {'<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', 'set loclist'}
-    },
-    ['<leader>ca'] = {'<cmd>Telescope lsp_code_actions<CR>', 'code actions'}
+    }
   }, {buffer = bufnr})
 
   local ft = vim.fn.getbufvar(bufnr, '&filetype')
 
   if ft ~= 'java' then
+    wk({['<leader>ca'] = {'<cmd>Telescope lsp_code_actions<CR>', 'code actions'}})
     if client.resolved_capabilities.document_formatting then
       buf_map('n', '<leader>ff', '<cmd>lua vim.lsp.buf.formatting()<CR>')
     end

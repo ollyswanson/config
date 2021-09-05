@@ -7,7 +7,7 @@ local finders = require 'telescope.finders'
 local sorters = require 'telescope.sorters'
 local actions = require 'telescope.actions'
 local pickers = require 'telescope.pickers'
-local make_capabilities = require('lsp.capabilites').make_capabilities
+local make_capabilities = require('lsp.capabilities').make_capabilities
 
 function M.dap_run_test()
   dap.repl.open()
@@ -25,20 +25,22 @@ function M.jdtls_config()
         "~/bin/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar")
   }
   vim.list_extend(jdtls_bundles, vim.split(vim.fn.glob("~/bin/vscode-java-test/server/*.jar"), "\n"))
+  local root_markers = {'gradlew', 'pom.xml'}
+  local root_dir = require('jdtls.setup').find_root(root_markers)
 
   return {
     capabilities = make_capabilities(),
     cmd = {
       require('lspinstall/util').install_path('java') .. '/jdtls.sh',
-      vim.env.HOME .. '/.jdtls/' .. vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
+      vim.env.HOME .. '/.jdtls/' .. vim.fn.fnamemodify(root_dir, ':p:h:t')
     },
     init_options = {bundles = jdtls_bundles},
     on_attach = function(client, bufnr)
       require('lsp.on_attach')(client, bufnr)
 
+      require('jdtls.setup').add_commands()
       require('jdtls').setup_dap({hotcodereplace = 'auto'})
       require('jdtls.dap').setup_dap_main_class_configs()
-      require('jdtls.setup').add_commands()
       require('mappings').dap_mappings(bufnr)
 
       require('jdtls.ui').pick_one_async = function(items, prompt, label_fn, cb)
@@ -72,11 +74,11 @@ function M.jdtls_config()
           n = {'<cmd>lua require("filetypes.java").dap_run_test_nearest()<CR>', 'test nearest'}
         },
         ['<leader>j'] = {
-          j = {'<cmd>lua require("jdtls").code_action()<CR>', 'Java code actions'},
           R = {'<cmd>lua require("jdtls").code_action(false, "refactor")<CR>', 'menu'},
           o = {'<cmd>lua require("jdtls").organize_imports()<CR>', 'organize imports'},
           v = {'<cmd>lua require("jdtls").extract_variable()<CR>', 'extract variable'}
         },
+        ['<leader>ca'] = {'<cmd>lua require("jdtls").code_action()<CR>', 'code actions'},
         ['<leader>f'] = {
           f = {'<cmd>PrettierAsync<CR>', 'format'},
           c = {'<cmd>lua require("jdtls").update_project_config()<CR>', 'reload'}
@@ -84,8 +86,8 @@ function M.jdtls_config()
       }, {buffer = bufnr})
 
       wk({
+        ['<leader>ca'] = {'<cmd>lua require("jdtls").code_action(true)<CR>', 'code actions'},
         ['<leader>j'] = {
-          j = {'<cmd>lua require("jdtls").code_action(true)<CR>', 'Java code actions'},
           m = {'<cmd>lua require("jdtls").extract_method(true)<CR>', 'extract method'},
           v = {'<cmd>lua require("jdtls").extract_variable(true)<CR>', 'extract variable'}
         }

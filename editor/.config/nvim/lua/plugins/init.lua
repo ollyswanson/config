@@ -90,7 +90,13 @@ require('packer').startup(function()
     end
   }
 
-  use {'kyazdani42/nvim-tree.lua', requires = 'kyazdani42/nvim-web-devicons'}
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires = 'kyazdani42/nvim-web-devicons',
+    config = function()
+      vim.g.nvim_tree_disable_netrw = 0
+    end
+  }
 
   use 'mfussenegger/nvim-dap'
 

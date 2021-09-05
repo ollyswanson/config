@@ -102,4 +102,12 @@ require('packer').startup(function()
       require("which-key").setup(require('plugins.which-key').settings)
     end
   }
+
+  use {
+    'lewis6991/gitsigns.nvim',
+    requires = {'nvim-lua/plenary.nvim'},
+    config = function()
+      require('gitsigns').setup(require('plugins.gsigns').setup())
+    end
+  }
 end)

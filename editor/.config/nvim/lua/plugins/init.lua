@@ -6,6 +6,8 @@ require('packer').startup(function()
   use {'wbthomason/packer.nvim', opt = true}
 
   use 'tpope/vim-surround'
+  use 'tpope/vim-fugitive'
+  use 'tpope/vim-rhubarb'
 
   use {
     'nvim-treesitter/nvim-treesitter',
@@ -97,8 +99,7 @@ require('packer').startup(function()
   use {
     "folke/which-key.nvim",
     config = function()
-      require("which-key").setup(require('plugins.olly.which-key').settings)
+      require("which-key").setup(require('plugins.which-key').settings)
     end
   }
-
 end)

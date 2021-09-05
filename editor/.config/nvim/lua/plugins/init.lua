@@ -24,6 +24,8 @@ require('packer').startup(function()
     end
   }
 
+  use 'nvim-treesitter/nvim-treesitter-textobjects'
+
   use {
     'neovim/nvim-lspconfig',
     config = function()

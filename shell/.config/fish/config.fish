@@ -13,6 +13,19 @@ function d
 	end
 end
 
+function replace_applicationyml
+	while test $PWD != "/"
+		if test -f gradlew
+			break
+		end
+		cd ..
+	end
+
+    if test $PWD != "/"
+        cp bin/test/application.yml bin/main/application.yml
+    end
+end
+
 function conf
     cd $DOTFILES
 end

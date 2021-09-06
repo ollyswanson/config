@@ -45,7 +45,7 @@ require('packer').startup(function()
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-nvim-lua'
 
-  use {'nvim-lua/lsp-status.nvim'}
+  use {'nvim-lua/lsp-status.nvim', commit = '745ba61c353b47c365d4dbfdd3d3334a3177f8cd'}
 
   use {
     'glepnir/galaxyline.nvim',
@@ -76,7 +76,7 @@ require('packer').startup(function()
     end
   }
 
-  use 'nvim-lua/lsp_extensions.nvim'
+  use {'nvim-lua/lsp_extensions.nvim', commit = 'a1f12b8df1d3d8e46a7010615d2a335cd06814f2'}
 
   use {
     'mhartington/formatter.nvim',

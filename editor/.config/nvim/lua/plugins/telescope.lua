@@ -41,24 +41,7 @@ function M.setup()
     }
   })
 end
---[[
-  what builtins do I want to use?
-  builtin.find_files
-  builtin.live_grep
-  builtin.buffers	
-  builtin.help_tags
-  builtin.lsp_references
-  builtin.grep_string 
-  builtin.lsp_workspace_diagnostics
-  builtin.file_browser
-]]
--- builtin.git_branches({
---   attach_mappings = function(_, map)
---     map('i', '<c-d>', actions.git_delete_branch)
---     map('n', '<c-d>', actions.git_delete_branch)
---     return true
---   end
--- })
+
 function M.git_branches()
   builtin.git_branches({
     attach_mappings = function(_, map)

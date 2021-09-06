@@ -22,6 +22,7 @@ function M.setup()
 
   wk({
     ['<C-p>'] = {'<cmd>lua require("telescope.builtin").find_files()<CR>', 'find files'},
+    ['<leader>lg'] = {'<cmd>lua require("telescope.builtin").live_grep()<CR>', 'show buffers'},
     ['<leader>t'] = {
       name = 'telescope',
       h = {'<cmd>lua require("telescope.builtin").help_tags()<CR>', 'help tags'},
@@ -32,12 +33,15 @@ function M.setup()
       d = {
         '<cmd>lua require("telescope.builtin").lsp_workspace_diagnostics()<CR>',
         'workspace diagnostics'
-      },
-      g = {
-        name = 'git',
-        b = {'<cmd> lua require("plugins.telescope").git_branches()<CR>', 'branch'}
       }
-
+    },
+    ['<leader>g'] = {
+      name = 'git',
+      b = {'<cmd> lua require("plugins.telescope").git_branches()<CR>', 'branch'},
+      c = {'<cmd> lua require("telescope.builtin").git_commits()<CR>', 'commits'},
+      j = {'<cmd> lua require("telescope.builtin").git_bcommits()<CR>', 'bcommits'},
+      s = {'<cmd> lua require("telescope.builtin").git_status()<CR>', 'status'},
+      g = {'<cmd> Git<CR>', 'fugitive'}
     }
   })
 end
@@ -45,8 +49,21 @@ end
 function M.git_branches()
   builtin.git_branches({
     attach_mappings = function(_, map)
-      map('i', '<c-d>', actions.git_delete_branch)
-      map('n', '<c-d>', actions.git_delete_branch)
+      actions.select_default:replace(actions.git_checkout)
+      map("i", "<c-t>", actions.git_track_branch)
+      map("n", "<c-t>", actions.git_track_branch)
+
+      map("i", "<c-r>", actions.git_rebase_branch)
+      map("n", "<c-r>", actions.git_rebase_branch)
+
+      map("i", "<c-h>", actions.git_create_branch)
+      map("n", "<c-h>", actions.git_create_branch)
+
+      map("i", "<c-s>", actions.git_switch_branch)
+      map("n", "<c-s>", actions.git_switch_branch)
+
+      map("i", "<c-d>", actions.git_delete_branch)
+      map("n", "<c-d>", actions.git_delete_branch)
       return true
     end
   })

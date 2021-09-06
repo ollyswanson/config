@@ -22,18 +22,27 @@ function M.setup()
 
   wk({
     ['<C-p>'] = {'<cmd>lua require("telescope.builtin").find_files()<CR>', 'find files'},
-    ['<leader>lg'] = {'<cmd>lua require("telescope.builtin").live_grep()<CR>', 'show buffers'},
+    ['<leader>l'] = {
+      g = {'<cmd>lua require("telescope.builtin").live_grep()<CR>', 'show buffers'},
+      f = {'<cmd>lua require("telescope.builtin").current_buffer_fuzzy_find()<CR>', 'show buffers'}
+    },
     ['<leader>t'] = {
       name = 'telescope',
       h = {'<cmd>lua require("telescope.builtin").help_tags()<CR>', 'help tags'},
       r = {'<cmd>lua require("telescope.builtin").lsp_references()<CR>', 'lsp references'},
       b = {'<cmd>lua require("telescope.builtin").buffers()<CR>', 'show buffers'},
-      ['rg'] = {'<cmd>lua require("telescope.builtin").grep_string()<CR>', 'show buffers'},
+      g = {'<cmd>lua require("telescope.builtin").grep_string()<CR>', 'show buffers'},
       p = {'<cmd>lua require("telescope.builtin").file_browser()<CR>', 'file browser'},
       d = {
         '<cmd>lua require("telescope.builtin").lsp_workspace_diagnostics()<CR>',
         'workspace diagnostics'
-      }
+      },
+      t = {'<cmd>lua require("telescope.builtin").resume()<CR>', 'resume'},
+      k = {'<cmd>lua require("telescope.builtin").keymaps()<CR>', 'keymaps'},
+      j = {'<cmd> lua require("telescope.builtin").registers()<CR>', 'registers'},
+      s = {'<cmd> lua require("telescope.builtin").treesitter()<CR>', 'treesitter'},
+      c = {'<cmd> lua require("telescope.builtin").command_history()<CR>', 'commands'},
+      m = {'<cmd> lua require("telescope.builtin").marks()<CR>', 'commands'}
     },
     ['<leader>g'] = {
       name = 'git',

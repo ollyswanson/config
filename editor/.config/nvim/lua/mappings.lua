@@ -58,10 +58,10 @@ function M.lsp_mappings(client, bufnr)
   wk({
     g = {
       name = 'goto',
-      d = {'<cmd>lua vim.lsp.buf.definition()<CR>', 'definition'},
+      d = {'<cmd>lua require("telescope.builtin").definitions()<CR>', 'definition'},
       D = {'<cmd>lua vim.lsp.buf.declaration()<CR>', 'declaration'},
-      i = {'<cmd>lua vim.lsp.buf.implementation()<CR>', 'implementation'},
-      r = {'<cmd>lua vim.lsp.buf.references()<CR>', 'references'}
+      i = {'<cmd>lua require("telescope.builtin").implementations()<CR>', 'implementation'},
+      r = {'<cmd>lua require("telescope.builtin").references()<CR>', 'references'}
     },
     ['<leader>f'] = {
       s = {'<cmd>Telescope lsp_document_symbols<CR>', 'document symbols'},

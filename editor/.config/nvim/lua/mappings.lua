@@ -12,7 +12,7 @@ function M.define_mappings()
   map('c', '<C-j>', '<Esc>')
   map('o', '<C-j>', '<Esc>')
   map('l', '<C-j>', '<Esc>')
-  map('t', '<C-j>', '<Esc>')
+  map('t', '<C-j>', "<C-\\><C-n>")
 
   map('n', '<C-k>', '<Esc>')
   map('i', '<C-k>', '<Esc>')
@@ -39,7 +39,13 @@ function M.define_mappings()
       q = {"<cmd> lua require('funcs').close_everything()<CR>", 'all'},
       w = {"<cmd> q<CR>", 'w'}
     },
-    ['<leader>n'] = {name = "file tree", n = {"<cmd> NvimTreeToggle<CR>", "toggle"}}
+    ['<leader>n'] = {
+      name = "file tree",
+      n = {"<cmd> NvimTreeToggle<CR>", "toggle"},
+      h = {"<cmd> NvimTreeFindFile<CR>", "open here"}
+    },
+
+    ['<leader>T'] = {'<cmd>terminal<CR>', 'terminal'}
   })
 end
 

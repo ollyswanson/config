@@ -24,7 +24,7 @@ function M.setup()
     ['<C-p>'] = {'<cmd>lua require("telescope.builtin").find_files()<CR>', 'find files'},
     ['<leader>l'] = {
       g = {'<cmd>lua require("telescope.builtin").live_grep()<CR>', 'show buffers'},
-      f = {'<cmd>lua require("telescope.builtin").current_buffer_fuzzy_find()<CR>', 'show buffers'}
+      f = {'<cmd>lua require("plugins.telescope").current_buffer_fuzzy_find()<CR>', 'show buffers'}
     },
     ['<leader>t'] = {
       name = 'telescope',
@@ -75,6 +75,14 @@ function M.git_branches()
       map("n", "<c-d>", actions.git_delete_branch)
       return true
     end
+  })
+end
+
+function M.current_buffer_fuzzy_find()
+  builtin.current_buffer_fuzzy_find({
+    layout_strategy = "vertical",
+    layout_config = {prompt_position = "top"},
+    sorting_strategy = "ascending"
   })
 end
 

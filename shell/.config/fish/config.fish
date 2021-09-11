@@ -60,7 +60,7 @@ function nvm
    bass source (brew --prefix nvm)/nvm.sh --no-use ';' nvm $argv
 end
 
-base16-gruvbox-dark-hard
+nightfox_fish
 
 set -x NVM_DIR ~/.nvm
 nvm use default --silent

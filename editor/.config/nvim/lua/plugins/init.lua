@@ -5,6 +5,13 @@ require('packer').startup(function()
   -- Packer can manage itself as an optional plugin
   use {'wbthomason/packer.nvim', opt = true}
 
+  use {
+    'EdenEast/nightfox.nvim',
+    config = function()
+      require('nightfox').load('nordfox')
+    end
+  }
+
   use 'tpope/vim-surround'
   use 'tpope/vim-fugitive'
   use 'tpope/vim-rhubarb'
@@ -74,7 +81,7 @@ require('packer').startup(function()
   }
 
   -- use 'sainnhe/gruvbox-material'
-  use 'sainnhe/everforest'
+  -- use 'sainnhe/everforest'
 
   use {
     'glepnir/lspsaga.nvim',
@@ -122,6 +129,7 @@ require('packer').startup(function()
   use {
     'lewis6991/gitsigns.nvim',
     requires = {'nvim-lua/plenary.nvim'},
+    commit = 'f46a89978ca523224b3df5291ca0d8278cb30843',
     config = function()
       require('gitsigns').setup(require('plugins.gsigns').setup())
     end

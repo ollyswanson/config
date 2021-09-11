@@ -68,6 +68,17 @@ opt('o', 'showmode', false)
 -- start scrolling window when we reach given offset
 opt('o', 'scrolloff', 6)
 
+vim.wo.list = true
+vim.opt.listchars = {
+  eol = '↲',
+  tab = '» ',
+  trail = '·',
+  extends = '<',
+  precedes = '>',
+  conceal = '┊',
+  nbsp = '␣'
+}
+
 -- find a better place for these
 local file_types =
     'javascript,typescript,javascriptreact,typescriptreact,javascript.jsx,typescript.tsx,lua,yaml,java'

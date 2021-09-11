@@ -126,4 +126,11 @@ require('packer').startup(function()
       require('gitsigns').setup(require('plugins.gsigns').setup())
     end
   }
+
+  use {
+    'lukas-reineke/indent-blankline.nvim',
+    config = function()
+      require('indent_blankline').setup {buftype_exclude = {'terminal'}, show_end_of_line = true}
+    end
+  }
 end)

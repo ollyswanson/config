@@ -13,8 +13,6 @@ require('packer').startup(function()
   }
 
   use 'tpope/vim-surround'
-  use 'tpope/vim-fugitive'
-  use 'tpope/vim-rhubarb'
 
   use {
     'nvim-treesitter/nvim-treesitter',
@@ -133,6 +131,14 @@ require('packer').startup(function()
     'lukas-reineke/indent-blankline.nvim',
     config = function()
       require('indent_blankline').setup {buftype_exclude = {'terminal'}, show_end_of_line = true}
+    end
+  }
+
+  use {
+    'TimUntersberger/neogit',
+    requires = {{'nvim-lua/plenary.nvim'}, {'sindrets/diffview.nvim'}},
+    config = function()
+      require('neogit').setup {integrations = {diffview = true}}
     end
   }
 end)

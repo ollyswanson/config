@@ -20,7 +20,12 @@ function M.cmp_setup()
       ['<C-e>'] = cmp.mapping.close(),
       ['<CR>'] = cmp.mapping.confirm({behavior = cmp.ConfirmBehavior.Replace, select = true})
     },
-    sources = {{name = 'buffer'}, {name = 'nvim_lsp'}}
+    snippet = {
+      expand = function(args)
+        require'luasnip'.lsp_expand(args.body)
+      end
+    },
+    sources = {{name = 'buffer'}, {name = 'nvim_lsp'}, {name = 'luasnip'}}
   }
 end
 

@@ -36,6 +36,12 @@ require('packer').startup(function()
   use 'kabouzeid/nvim-lspinstall'
 
   use {
+    'L3MON4D3/LuaSnip',
+    config = function()
+      require('plugins.luasnip.config').setup()
+    end
+  }
+  use {
     'hrsh7th/nvim-cmp',
     config = function()
       require('plugins.completion').cmp_setup()
@@ -44,6 +50,7 @@ require('packer').startup(function()
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-buffer'
   use 'hrsh7th/cmp-nvim-lua'
+  use {'saadparwaiz1/cmp_luasnip'}
 
   use {'nvim-lua/lsp-status.nvim', commit = '745ba61c353b47c365d4dbfdd3d3334a3177f8cd'}
 

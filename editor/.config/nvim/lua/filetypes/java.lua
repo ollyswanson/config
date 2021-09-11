@@ -20,6 +20,9 @@ function M.dap_run_test_nearest()
 end
 
 function M.jdtls_config()
+  -- this is a work around for the test runner not using application.yml in test/resources
+  vim.g.spring_config_location = "bin/test/"
+
   local jdtls_bundles = {
     vim.fn.glob(
         "~/bin/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar")

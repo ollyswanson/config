@@ -102,7 +102,8 @@ require('packer').startup(function()
 
   use 'mfussenegger/nvim-dap'
 
-  use 'mfussenegger/nvim-jdtls'
+  -- use 'mfussenegger/nvim-jdtls'
+  use '~/dev/plugins/nvim-jdtls'
 
   use {
     "folke/which-key.nvim",

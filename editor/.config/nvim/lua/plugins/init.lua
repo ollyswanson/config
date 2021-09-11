@@ -62,14 +62,11 @@ require('packer').startup(function()
   use {'nvim-lua/lsp-status.nvim', commit = '745ba61c353b47c365d4dbfdd3d3334a3177f8cd'}
 
   use {
-    'glepnir/galaxyline.nvim',
-    branch = 'main',
-    -- your statusline
+    'hoob3rt/lualine.nvim',
+    requires = {'kyazdani42/nvim-web-devicons', opt = true},
     config = function()
-      require('plugins.galaxyline')
-    end,
-    -- some optional icons
-    requires = {'kyazdani42/nvim-web-devicons', opt = true}
+      require('lualine').setup(require('plugins.lualine').setup())
+    end
   }
 
   use {

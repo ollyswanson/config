@@ -77,9 +77,6 @@ require('packer').startup(function()
     end
   }
 
-  -- use 'sainnhe/gruvbox-material'
-  -- use 'sainnhe/everforest'
-
   use {
     'glepnir/lspsaga.nvim',
     config = function()

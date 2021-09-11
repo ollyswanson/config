@@ -78,6 +78,7 @@ vim.opt.listchars = {
   conceal = '┊',
   nbsp = '␣'
 }
+vim.wo.colorcolumn = "99999"
 
 -- find a better place for these
 local file_types =

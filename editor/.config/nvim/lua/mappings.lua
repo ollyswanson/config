@@ -148,7 +148,7 @@ function M.gitsigns_mappings()
       },
       ['r'] = {
         '<cmd>lua require"gitsigns".reset_hunk({vim.fn.line("."), vim.fn.line("v")})<CR>',
-        'stage hunk'
+        'reset hunk'
       }
     }
   }, {mode = 'v'})

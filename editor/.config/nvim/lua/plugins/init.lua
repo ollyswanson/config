@@ -13,6 +13,8 @@ require('packer').startup(function()
   }
 
   use 'tpope/vim-surround'
+  use 'tpope/vim-fugitive'
+  use 'tpope/vim-rhubarb'
 
   use {
     'nvim-treesitter/nvim-treesitter',
@@ -134,11 +136,14 @@ require('packer').startup(function()
     end
   }
 
-  use {
-    'TimUntersberger/neogit',
-    requires = {{'nvim-lua/plenary.nvim'}, {'sindrets/diffview.nvim'}},
-    config = function()
-      require('neogit').setup {integrations = {diffview = true}}
-    end
-  }
+  -- use {
+  --   'TimUntersberger/neogit',
+  --   requires = {'sindrets/diffview.nvim'},
+  --   config = function()
+  --     vim.defer_fn(function()
+  --       require('neogit').setup {integrations = {diffview = true}}
+  --     end, 10)
+  --   end
+  -- }
+  use 'sindrets/diffview.nvim'
 end)

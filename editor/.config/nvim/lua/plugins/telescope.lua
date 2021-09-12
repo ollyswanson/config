@@ -50,7 +50,7 @@ function M.setup()
       c = {'<cmd> lua require("telescope.builtin").git_commits()<CR>', 'commits'},
       j = {'<cmd> lua require("telescope.builtin").git_bcommits()<CR>', 'bcommits'},
       s = {'<cmd> lua require("telescope.builtin").git_status()<CR>', 'status'},
-      g = {'<cmd> Neogit<CR>', 'neogit'}
+      g = {'<cmd> Git<CR>', 'fugitive'}
     }
   })
 end

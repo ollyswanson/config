@@ -83,10 +83,10 @@ vim.wo.colorcolumn = "99999"
 -- find a better place for these
 local file_types = "javascript,typescript,javascriptreact,typescriptreact,javascript.jsx,typescript.tsx,lua,yaml,java"
 
-create_augroups {
+create_augroups({
   spacing = {
     { "FileType " .. file_types .. " set shiftwidth=2" },
     { "FileType " .. file_types .. " set tabstop=2" },
     { "FileType " .. file_types .. " set tabstop=2" },
   },
-}
+})

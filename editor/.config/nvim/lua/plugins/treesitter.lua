@@ -2,7 +2,7 @@ local read_query = function(filename)
   return table.concat(vim.fn.readfile(vim.fn.expand(filename)))
 end
 
-require("nvim-treesitter.configs").setup {
+require("nvim-treesitter.configs").setup({
   ensure_installed = {},
   highlight = {
     enable = true,
@@ -41,4 +41,4 @@ require("nvim-treesitter.configs").setup {
       peek_definition_code = { ["<leader>kf"] = "@function.outer", ["<leader>kc"] = "@class.outer" },
     },
   },
-}
+})

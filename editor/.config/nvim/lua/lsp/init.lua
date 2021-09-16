@@ -1,3 +1,3 @@
 require("lsp.status").activate()
-require "lsp.lspinstall"
-require "lsp.extensions"
+require("lsp.lspinstall")
+require("lsp.extensions")

@@ -1,12 +1,12 @@
 local M = {}
 
 local wk = require("which-key").register
-local dap = require "dap"
-local jdtls = require "jdtls"
-local finders = require "telescope.finders"
-local sorters = require "telescope.sorters"
-local actions = require "telescope.actions"
-local pickers = require "telescope.pickers"
+local dap = require("dap")
+local jdtls = require("jdtls")
+local finders = require("telescope.finders")
+local sorters = require("telescope.sorters")
+local actions = require("telescope.actions")
+local pickers = require("telescope.pickers")
 local make_capabilities = require("lsp.capabilities").make_capabilities
 
 function M.dap_run_test()
@@ -24,24 +24,24 @@ function M.jdtls_config()
   vim.g.spring_config_location = "bin/test/"
 
   local jdtls_bundles = {
-    vim.fn.glob "~/bin/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar",
+    vim.fn.glob("~/bin/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar"),
   }
-  vim.list_extend(jdtls_bundles, vim.split(vim.fn.glob "~/bin/vscode-java-test/server/*.jar", "\n"))
+  vim.list_extend(jdtls_bundles, vim.split(vim.fn.glob("~/bin/vscode-java-test/server/*.jar"), "\n"))
   local root_markers = { "gradlew", "pom.xml" }
   local root_dir = require("jdtls.setup").find_root(root_markers)
 
   return {
     capabilities = make_capabilities(),
     cmd = {
-      require("lspinstall/util").install_path "java" .. "/jdtls.sh",
+      require("lspinstall/util").install_path("java") .. "/jdtls.sh",
       vim.env.HOME .. "/.jdtls/" .. vim.fn.fnamemodify(root_dir, ":p:h:t"),
     },
     init_options = { bundles = jdtls_bundles },
     on_attach = function(client, bufnr)
-      require "lsp.on_attach"(client, bufnr)
+      require("lsp.on_attach")(client, bufnr)
 
       require("jdtls.setup").add_commands()
-      require("jdtls").setup_dap { hotcodereplace = "auto" }
+      require("jdtls").setup_dap({ hotcodereplace = "auto" })
       require("jdtls.dap").setup_dap_main_class_configs()
       require("mappings").dap_mappings(bufnr)
 
@@ -49,12 +49,12 @@ function M.jdtls_config()
         local opts = {}
         pickers.new(opts, {
           prompt_title = prompt,
-          finder = finders.new_table {
+          finder = finders.new_table({
             results = items,
             entry_maker = function(entry)
               return { value = entry, display = label_fn(entry), ordinal = label_fn(entry) }
             end,
-          },
+          }),
           sorter = sorters.get_generic_fuzzy_sorter(),
           attach_mappings = function(prompt_bufnr)
             actions.select_default:replace(function()

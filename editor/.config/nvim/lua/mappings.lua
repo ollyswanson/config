@@ -33,7 +33,7 @@ function M.define_mappings()
   map("n", "<C-k>", "<C-w>k")
   map("n", "<C-l>", "<C-w>l")
 
-  wk {
+  wk({
     ["<leader>q"] = {
       name = "quit",
       q = { "<cmd> lua require('funcs').close_everything()<CR>", "all" },
@@ -46,7 +46,7 @@ function M.define_mappings()
     },
 
     ["<leader>T"] = { "<cmd>terminal<CR>", "terminal" },
-  }
+  })
 end
 
 function M.cmp_mappings() end
@@ -96,7 +96,7 @@ function M.lsp_mappings(client, bufnr)
   local ft = vim.fn.getbufvar(bufnr, "&filetype")
 
   if ft ~= "java" then
-    wk { ["<leader>ca"] = { "<cmd>Telescope lsp_code_actions<CR>", "code actions" } }
+    wk({ ["<leader>ca"] = { "<cmd>Telescope lsp_code_actions<CR>", "code actions" } })
     if client.resolved_capabilities.document_formatting then
       buf_map("n", "<leader>ff", "<cmd>lua vim.lsp.buf.formatting()<CR>")
     end
@@ -131,7 +131,7 @@ function M.dap_mappings(bufnr)
 end
 
 function M.gitsigns_mappings()
-  wk {
+  wk({
     ["<leader>h"] = {
       name = "gitsigns",
       ["s"] = { '<cmd>lua require"gitsigns".stage_hunk()<CR>', "stage hunk" },
@@ -143,7 +143,7 @@ function M.gitsigns_mappings()
       ["S"] = { '<cmd>lua require"gitsigns".stage_buffer()<CR>', "stage buffer" },
       ["U"] = { '<cmd>lua require"gitsigns".reset_buffer_index()<CR>', "reset buffer index" },
     },
-  }
+  })
   wk({
     ["<leader>h"] = {
       name = "gitsigns",

@@ -1,7 +1,7 @@
-local lspinstall = require "lspinstall"
-local lspconfig = require "lspconfig"
-local on_attach = require "lsp.on_attach"
-local utils = require "utils"
+local lspinstall = require("lspinstall")
+local lspconfig = require("lspconfig")
+local on_attach = require("lsp.on_attach")
+local utils = require("utils")
 local make_capabilities = require("lsp.capabilities").make_capabilities
 
 local function make_config()
@@ -19,15 +19,15 @@ local function setup_servers()
     local config = make_config()
 
     if server == "lua" then
-      config.settings = require "lsp.lua"
+      config.settings = require("lsp.lua")
     end
 
     if server == "rust" then
-      config.settings = require "lsp.rust"
+      config.settings = require("lsp.rust")
     end
 
     if server == "efm" then
-      config = vim.tbl_extend("force", config, require "lsp.efm")
+      config = vim.tbl_extend("force", config, require("lsp.efm"))
     end
 
     if server ~= "java" then
@@ -48,5 +48,5 @@ setup_servers()
 -- Automatically reload after ":LspInstall <server>"
 lspinstall.post_install_hook = function()
   setup_servers() -- Reload installed servers
-  vim.cmd "bufdo e"
+  vim.cmd("bufdo e")
 end

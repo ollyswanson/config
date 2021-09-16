@@ -1,10 +1,10 @@
 local M = {}
 
-local colors = require("nightfox.colors").init "nordfox"
+local colors = require("nightfox.colors").init("nordfox")
 
 local conditions = {
   buffer_not_empty = function()
-    return vim.fn.empty(vim.fn.expand "%:t") ~= 1
+    return vim.fn.empty(vim.fn.expand("%:t")) ~= 1
   end,
   hide_in_width = function()
     return vim.fn.winwidth(0) > 80
@@ -32,18 +32,18 @@ local function ins_right(component)
   table.insert(config.sections.lualine_x, component)
 end
 
-ins_left { "filename", condition = conditions.buffer_not_empty }
+ins_left({ "filename", condition = conditions.buffer_not_empty })
 
-ins_left {
+ins_left({
   "diagnostics",
   sources = { "nvim_lsp" },
   symbols = { error = " ", warn = " ", info = " " },
   color_error = colors.red,
   color_warn = colors.yellow,
   color_info = colors.cyan,
-}
+})
 
-ins_left {
+ins_left({
   function()
     local msg = "No Active Lsp"
     local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
@@ -60,9 +60,9 @@ ins_left {
     return msg
   end,
   icon = " LSP:",
-}
+})
 
-ins_right {
+ins_right({
   "diff",
   -- Is it me or the symbol for modified us really weird
   symbols = { added = " ", modified = "柳 ", removed = " " },
@@ -70,11 +70,11 @@ ins_right {
   color_modified = colors.orange,
   color_removed = colors.red,
   condition = conditions.hide_in_width,
-}
+})
 
-ins_right { "encoding", condition = conditions.hide_in_width }
+ins_right({ "encoding", condition = conditions.hide_in_width })
 
-ins_right { "fileformat", condition = conditions.hide_in_width }
+ins_right({ "fileformat", condition = conditions.hide_in_width })
 
 function M.setup()
   return config

@@ -1,4 +1,4 @@
-local nvim_status = require "lsp-status"
+local nvim_status = require("lsp-status")
 
 local on_attach = function(client, bufnr)
   local filetype = vim.api.nvim_buf_get_option(bufnr, "filetype")

@@ -1,4 +1,4 @@
-local nvim_status = require "lsp-status"
+local nvim_status = require("lsp-status")
 local messages = require("lsp-status/messaging").messages
 
 local symbols = {
@@ -33,9 +33,9 @@ end
 status.on_attach = function(client)
   nvim_status.on_attach(client)
 
-  vim.cmd [[augroup og_lsp_status]]
-  vim.cmd [[  autocmd CursorHold,BufEnter <buffer> lua require('lsp-status').update_current_function()]]
-  vim.cmd [[augroup END]]
+  vim.cmd([[augroup og_lsp_status]])
+  vim.cmd([[  autocmd CursorHold,BufEnter <buffer> lua require('lsp-status').update_current_function()]])
+  vim.cmd([[augroup END]])
 end
 
 status.progress_message = function()

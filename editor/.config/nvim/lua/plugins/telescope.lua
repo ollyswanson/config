@@ -1,11 +1,11 @@
 local M = {}
 
-local actions = require "telescope.actions"
-local builtin = require "telescope.builtin"
+local actions = require("telescope.actions")
+local builtin = require("telescope.builtin")
 local wk = require("which-key").register
 
 function M.setup()
-  require("telescope").setup {
+  require("telescope").setup({
     defaults = {
       mappings = {
         i = { ["<CR>"] = actions.select_default + actions.center },
@@ -25,9 +25,9 @@ function M.setup()
       layout_strategy = "flex",
       scroll_strategy = "cycle",
     },
-  }
+  })
 
-  wk {
+  wk({
     ["<C-p>"] = { '<cmd>lua require("telescope.builtin").find_files()<CR>', "find files" },
     ["<leader>l"] = {
       g = { '<cmd>lua require("telescope.builtin").live_grep()<CR>', "show buffers" },
@@ -59,11 +59,11 @@ function M.setup()
       s = { '<cmd> lua require("telescope.builtin").git_status()<CR>', "status" },
       g = { "<cmd> Git<CR>", "fugitive" },
     },
-  }
+  })
 end
 
 function M.git_branches()
-  builtin.git_branches {
+  builtin.git_branches({
     attach_mappings = function(_, map)
       actions.select_default:replace(actions.git_checkout)
       map("i", "<c-t>", actions.git_track_branch)
@@ -82,15 +82,15 @@ function M.git_branches()
       map("n", "<c-d>", actions.git_delete_branch)
       return true
     end,
-  }
+  })
 end
 
 function M.current_buffer_fuzzy_find()
-  builtin.current_buffer_fuzzy_find {
+  builtin.current_buffer_fuzzy_find({
     layout_strategy = "vertical",
     layout_config = { prompt_position = "top" },
     sorting_strategy = "ascending",
-  }
+  })
 end
 
 return M

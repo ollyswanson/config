@@ -28,7 +28,7 @@ require("packer").startup(function()
       },
     },
     config = function()
-      require("plugins.treesitter")
+      require("core.treesitter")
     end,
   })
 
@@ -46,13 +46,13 @@ require("packer").startup(function()
   use({
     "L3MON4D3/LuaSnip",
     config = function()
-      require("plugins.luasnip.config").setup()
+      require("core.luasnip.config").setup()
     end,
   })
   use({
     "hrsh7th/nvim-cmp",
     config = function()
-      require("plugins.completion").cmp_setup()
+      require("core.completion").cmp_setup()
     end,
   })
   use("hrsh7th/cmp-nvim-lsp")
@@ -66,7 +66,7 @@ require("packer").startup(function()
     "hoob3rt/lualine.nvim",
     requires = { "kyazdani42/nvim-web-devicons", opt = true },
     config = function()
-      require("lualine").setup(require("plugins.lualine").setup())
+      require("lualine").setup(require("core.lualine").setup())
     end,
   })
 
@@ -74,7 +74,7 @@ require("packer").startup(function()
     "nvim-telescope/telescope.nvim",
     requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
     config = function()
-      require("plugins.telescope").setup()
+      require("core.telescope").setup()
     end,
   })
 
@@ -83,14 +83,14 @@ require("packer").startup(function()
   use({
     "mhartington/formatter.nvim",
     config = function()
-      require("plugins.formatter")
+      require("core.formatter")
     end,
   })
 
   use({
     "b3nj5m1n/kommentary",
     config = function()
-      require("plugins.kommentary")
+      require("core.kommentary")
     end,
   })
 
@@ -110,7 +110,7 @@ require("packer").startup(function()
   use({
     "folke/which-key.nvim",
     config = function()
-      require("which-key").setup(require("plugins.which-key").settings)
+      require("which-key").setup(require("core.which-key").settings)
     end,
   })
 
@@ -119,7 +119,7 @@ require("packer").startup(function()
     requires = { "nvim-lua/plenary.nvim" },
     commit = "f46a89978ca523224b3df5291ca0d8278cb30843",
     config = function()
-      require("gitsigns").setup(require("plugins.gsigns").setup())
+      require("gitsigns").setup(require("core.gsigns").setup())
     end,
   })
 

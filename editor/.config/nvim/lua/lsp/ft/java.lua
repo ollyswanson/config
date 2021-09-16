@@ -72,8 +72,8 @@ function M.jdtls_config()
       wk({
         ["<leader>b"] = {
           r = { '<cmd>lua require("dap").continue()<CR>', "run" },
-          t = { '<cmd>lua require("filetypes.java").dap_run_test()<CR>', "test file" },
-          n = { '<cmd>lua require("filetypes.java").dap_run_test_nearest()<CR>', "test nearest" },
+          t = { '<cmd>lua require("lsp.ft.java").dap_run_test()<CR>', "test file" },
+          n = { '<cmd>lua require("lsp.ft.java").dap_run_test_nearest()<CR>', "test nearest" },
         },
         ["<leader>j"] = {
           R = { '<cmd>lua require("jdtls").code_action(false, "refactor")<CR>', "menu" },

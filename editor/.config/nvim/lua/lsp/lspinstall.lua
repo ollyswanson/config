@@ -1,7 +1,6 @@
 local lspinstall = require("lspinstall")
 local lspconfig = require("lspconfig")
 local on_attach = require("lsp.on_attach")
-local utils = require("utils")
 local make_capabilities = require("lsp.capabilities").make_capabilities
 
 local function make_config()
@@ -19,28 +18,21 @@ local function setup_servers()
     local config = make_config()
 
     if server == "lua" then
-      config.settings = require("lsp.lua")
+      config.settings = require("lsp.ft.lua")
     end
 
     if server == "rust" then
-      config.settings = require("lsp.rust")
+      config.settings = require("lsp.ft.rust")
     end
 
     if server == "efm" then
-      config = vim.tbl_extend("force", config, require("lsp.efm"))
+      config = vim.tbl_extend("force", config, require("lsp.ft.efm"))
     end
 
     if server ~= "java" then
       lspconfig[server].setup(config)
     end
   end
-
-  utils.augroup(
-    "lsp_define",
-    [[
-    autocmd FileType java lua require('jdtls').start_or_attach(require('filetypes.java').jdtls_config())
-  ]]
-  )
 end
 
 setup_servers()

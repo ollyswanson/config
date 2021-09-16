@@ -1,6 +1,6 @@
 vim.g.mapleader = " "
 
-require("plugins")
+require("core")
 require("settings")
 require("mappings").define_mappings()
 require("theme")

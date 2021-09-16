@@ -31,7 +31,7 @@ function M.setup()
     ["<C-p>"] = { '<cmd>lua require("telescope.builtin").find_files()<CR>', "find files" },
     ["<leader>l"] = {
       g = { '<cmd>lua require("telescope.builtin").live_grep()<CR>', "show buffers" },
-      f = { '<cmd>lua require("plugins.telescope").current_buffer_fuzzy_find()<CR>', "show buffers" },
+      f = { '<cmd>lua require("core.telescope").current_buffer_fuzzy_find()<CR>', "show buffers" },
     },
     ["<leader>t"] = {
       name = "telescope",
@@ -53,7 +53,7 @@ function M.setup()
     },
     ["<leader>g"] = {
       name = "git",
-      b = { '<cmd> lua require("plugins.telescope").git_branches()<CR>', "branch" },
+      b = { '<cmd> lua require("core.telescope").git_branches()<CR>', "branch" },
       c = { '<cmd> lua require("telescope.builtin").git_commits()<CR>', "commits" },
       j = { '<cmd> lua require("telescope.builtin").git_bcommits()<CR>', "bcommits" },
       s = { '<cmd> lua require("telescope.builtin").git_status()<CR>', "status" },

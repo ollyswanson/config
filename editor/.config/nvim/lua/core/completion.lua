@@ -10,7 +10,7 @@ function M.cmp_setup()
     "lua_completion",
     [[
     autocmd FileType lua lua require('cmp').setup.buffer({sources={{name = 'buffer'},{name = 'nvim_lsp'},{name = 'nvim_lua'}}})
-  ]]
+    ]]
   )
 
   cmp.setup({

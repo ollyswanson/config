@@ -89,6 +89,11 @@ function M.lsp_mappings(client, bufnr)
       w = { "<cmd> Telescope lsp_workspace_diagnostics<CR>", "workspace" },
       q = { "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", "set loclist" },
     },
+    l = {
+      name = "lsp",
+      p = { "<cmd>lua require'lsp.peek'.Peek('definition')<CR>", "Peek definition" }
+
+    }
   }, {
     buffer = bufnr,
   })

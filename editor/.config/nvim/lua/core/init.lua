@@ -5,6 +5,11 @@ require("packer").startup(function()
   -- Packer can manage itself as an optional plugin
   use({ "wbthomason/packer.nvim", opt = true })
 
+  use("neovim/nvim-lspconfig")
+  use({ "tamago324/nlsp-settings.nvim" })
+  use({ "jose-elias-alvarez/null-ls.nvim" })
+  use({ "antoinemadec/FixCursorHold.nvim" }) -- Needed while issue https://github.com/neovim/neovim/issues/12587 is still open
+
   use({
     "EdenEast/nightfox.nvim",
     config = function()
@@ -35,13 +40,11 @@ require("packer").startup(function()
   use("nvim-treesitter/nvim-treesitter-textobjects")
 
   use({
-    "neovim/nvim-lspconfig",
+    "kabouzeid/nvim-lspinstall",
     config = function()
-      require("lsp")
+      require("core.lspinstall").setup()
     end,
   })
-
-  use("kabouzeid/nvim-lspinstall")
 
   use({
     "L3MON4D3/LuaSnip",

@@ -7,7 +7,8 @@ local finders = require("telescope.finders")
 local sorters = require("telescope.sorters")
 local actions = require("telescope.actions")
 local pickers = require("telescope.pickers")
-local make_capabilities = require("lsp.capabilities").make_capabilities
+local common_capabilities = require("lsp").common_capabilities
+local log = require("core.log")
 
 function M.dap_run_test()
   dap.repl.open()
@@ -20,25 +21,51 @@ function M.dap_run_test_nearest()
 end
 
 function M.jdtls_config()
-  -- this is a work around for the test runner not using application.yml in test/resources
-  vim.g.spring_config_location = "bin/test/"
-
   local jdtls_bundles = {
     vim.fn.glob("~/bin/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar"),
   }
   vim.list_extend(jdtls_bundles, vim.split(vim.fn.glob("~/bin/vscode-java-test/server/*.jar"), "\n"))
   local root_markers = { "gradlew", "pom.xml" }
   local root_dir = require("jdtls.setup").find_root(root_markers)
+  local extendedClientCapabilities = require("jdtls").extendedClientCapabilities
+  extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 
   return {
-    capabilities = make_capabilities(),
+    capabilities = common_capabilities(),
     cmd = {
       require("lspinstall/util").install_path("java") .. "/jdtls.sh",
       vim.env.HOME .. "/.jdtls/" .. vim.fn.fnamemodify(root_dir, ":p:h:t"),
     },
-    init_options = { bundles = jdtls_bundles },
+    settings = {
+      ["java.format.enabled"] = false,
+      ["java.format.settings.url"] = vim.env.HOME .. "/eclipse-java-google-style.xml",
+      ["java.format.settings.profile"] = "GoogleStyle",
+      java = {
+        signatureHelp = { enabled = true },
+        contentProvider = { preferred = "fernflower" },
+        completion = {
+          favoriteStaticMembers = {
+            "org.hamcrest.MatcherAssert.assertThat",
+            "org.hamcrest.Matchers.*",
+            "org.hamcrest.CoreMatchers.*",
+            "org.junit.jupiter.api.Assertions.*",
+            "java.util.Objects.requireNonNull",
+            "java.util.Objects.requireNonNullElse",
+            "org.mockito.Mockito.*",
+            "org.mockito.BDDMockito.*",
+          },
+        },
+        sources = {
+          organizeImports = {
+            starThreshold = 9999,
+            staticStarThreshold = 9999,
+          },
+        },
+      },
+    },
+    init_options = { bundles = jdtls_bundles, extendedClientCapabilities = extendedClientCapabilities },
     on_attach = function(client, bufnr)
-      require("lsp.on_attach")(client, bufnr)
+      require("lsp.init").common_on_attach(client, bufnr)
 
       require("jdtls.setup").add_commands()
       require("jdtls").setup_dap({ hotcodereplace = "auto" })

@@ -2,19 +2,19 @@ local read_query = function(filename)
   return table.concat(vim.fn.readfile(vim.fn.expand(filename)))
 end
 
-require('nvim-treesitter.configs').setup({
+require("nvim-treesitter.configs").setup {
   ensure_installed = {},
   highlight = {
     enable = true,
     queries = {
       --           rust = read_query("~/.config/nvim/queries/rust/highlights.scm")
-    }
+    },
   },
-  indent = {enable = true, disable = {"rust", "java"}},
-  incremental_selection = {enable = true},
+  indent = { enable = true, disable = { "rust", "java" } },
+  incremental_selection = { enable = true },
   refactor = {
-    highlight_definitions = {enable = true},
-    smart_rename = {enable = true, keymaps = {smart_rename = "grr"}}
+    highlight_definitions = { enable = true },
+    smart_rename = { enable = true, keymaps = { smart_rename = "grr" } },
   },
   textobjects = {
     select = {
@@ -24,21 +24,21 @@ require('nvim-treesitter.configs').setup({
         ["af"] = "@function.outer",
         ["if"] = "@function.inner",
         ["ac"] = "@class.outer",
-        ["ic"] = "@class.inner"
-      }
+        ["ic"] = "@class.inner",
+      },
     },
     move = {
       enable = true,
       set_jumps = true,
-      goto_next_start = {["]m"] = "@function.outer", ["]]"] = "@class.outer"},
-      goto_next_end = {["]M"] = "@function.outer", ["]["] = "@class.outer"},
-      goto_previous_start = {["[m"] = "@function.outer", ["[["] = "@class.outer"},
-      goto_previous_end = {["[M"] = "@function.outer", ["[]"] = "@class.outer"}
+      goto_next_start = { ["]m"] = "@function.outer", ["]]"] = "@class.outer" },
+      goto_next_end = { ["]M"] = "@function.outer", ["]["] = "@class.outer" },
+      goto_previous_start = { ["[m"] = "@function.outer", ["[["] = "@class.outer" },
+      goto_previous_end = { ["[M"] = "@function.outer", ["[]"] = "@class.outer" },
     },
     lsp_interop = {
       enable = true,
-      border = 'none',
-      peek_definition_code = {["<leader>kf"] = "@function.outer", ["<leader>kc"] = "@class.outer"}
-    }
-  }
-})
+      border = "none",
+      peek_definition_code = { ["<leader>kf"] = "@function.outer", ["<leader>kc"] = "@class.outer" },
+    },
+  },
+}

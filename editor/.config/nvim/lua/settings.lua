@@ -1,8 +1,8 @@
 local opt = require("utils").opt
 local create_augroups = require("utils").nvim_create_augroups
 
--- use Fish
-opt("o", "shell", "/usr/local/bin/fish")
+-- use Bash
+opt("o", "shell", "/bin/bash")
 
 -- encoding
 opt("o", "encoding", "utf-8")

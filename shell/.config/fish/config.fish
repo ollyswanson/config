@@ -35,6 +35,10 @@ function cdf
     cd (fd --type directory --follow | fzf)
 end
 
+function idea
+    open -na "Intellij Idea.app" $argv
+end
+
 if functions -q fzf_key_bindings
     fzf_key_bindings
 end

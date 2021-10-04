@@ -15,7 +15,6 @@ require("formatter").setup({
     scss = { prettier },
     json = { prettier },
     markdown = { prettier },
-    java = { prettier },
     yaml = {
       function()
         return {
@@ -38,7 +37,7 @@ vim.api.nvim_exec(
   [[
 augroup FormatAutogroup
   autocmd!
-  autocmd BufWritePost *.java,*.css,*.scss,*.json,*.md,*.yaml,*.yml,*.html,*.rs FormatWrite
+  autocmd BufWritePost *.css,*.scss,*.json,*.md,*.yaml,*.yml,*.html,*.rs FormatWrite
 augroup END
 ]],
   true

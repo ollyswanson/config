@@ -63,10 +63,10 @@ require("packer").startup(function()
   use("hrsh7th/cmp-nvim-lua")
   use({ "saadparwaiz1/cmp_luasnip" })
 
-  use({ "nvim-lua/lsp-status.nvim", commit = "745ba61c353b47c365d4dbfdd3d3334a3177f8cd" })
+  use({ "nvim-lua/lsp-status.nvim" })
 
   use({
-    "hoob3rt/lualine.nvim",
+    "shadmansaleh/lualine.nvim",
     requires = { "kyazdani42/nvim-web-devicons", opt = true },
     config = function()
       require("lualine").setup(require("core.lualine").setup())
@@ -81,7 +81,7 @@ require("packer").startup(function()
     end,
   })
 
-  use({ "nvim-lua/lsp_extensions.nvim", commit = "a1f12b8df1d3d8e46a7010615d2a335cd06814f2" })
+  use({ "nvim-lua/lsp_extensions.nvim" })
 
   use({
     "mhartington/formatter.nvim",
@@ -107,8 +107,7 @@ require("packer").startup(function()
 
   use("mfussenegger/nvim-dap")
 
-  -- use 'mfussenegger/nvim-jdtls'
-  use("~/dev/plugins/nvim-jdtls")
+  use("mfussenegger/nvim-jdtls")
 
   use({
     "folke/which-key.nvim",
@@ -120,7 +119,6 @@ require("packer").startup(function()
   use({
     "lewis6991/gitsigns.nvim",
     requires = { "nvim-lua/plenary.nvim" },
-    commit = "f46a89978ca523224b3df5291ca0d8278cb30843",
     config = function()
       require("gitsigns").setup(require("core.gsigns").setup())
     end,

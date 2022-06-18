@@ -1,10 +1,9 @@
 local M = {}
 
-M.setup = function()
+function M.setup()
   require("nvim-tree").setup({
     disable_netrw = false,
     hijack_netrw = true,
-    auto_close = true,
   })
 end
 

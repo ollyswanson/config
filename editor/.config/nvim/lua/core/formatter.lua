@@ -2,6 +2,7 @@ local prettier = function()
   return { exe = "prettier", args = { "--stdin-filepath", vim.api.nvim_buf_get_name(0) }, stdin = true }
 end
 
+-- this can all be replaced with null-ls
 local rustfmt = function()
   return { exe = "rustfmt", args = { "--emit=stdout" }, stdin = true }
 end

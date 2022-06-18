@@ -1,5 +1,6 @@
 local autocommands = {}
 
+-- This is a helper function for declaring autocommands that can be replaced with the native api
 function autocommands.define_augroups(definitions) -- {{{1
   -- Create autocommand groups based on the passed definitions
   --
@@ -11,14 +12,14 @@ function autocommands.define_augroups(definitions) -- {{{1
   -- just like how they would normally be defined from Vim itself
   for group_name, definition in pairs(definitions) do
     vim.cmd("augroup " .. group_name)
-    vim.cmd "autocmd!"
+    vim.cmd("autocmd!")
 
     for _, def in pairs(definition) do
-      local command = table.concat(vim.tbl_flatten { "autocmd", def }, " ")
+      local command = table.concat(vim.tbl_flatten({ "autocmd", def }), " ")
       vim.cmd(command)
     end
 
-    vim.cmd "augroup END"
+    vim.cmd("augroup END")
   end
 end
 

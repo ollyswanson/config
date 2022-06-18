@@ -19,6 +19,10 @@ opt("o", "mouse", "a")
 -- use system clipboard
 opt("o", "clipboard", "unnamedplus")
 
+-- searching
+opt("o", "ignorecase", true)
+opt("o", "smartcase", true)
+
 -- undo file
 opt("o", "undodir", "/Users/" .. vim.env.USER .. "/.vim/undodir")
 opt("b", "undofile", true)
@@ -72,9 +76,6 @@ vim.wo.list = true
 vim.opt.listchars = {
   eol = "↲",
   tab = "» ",
-  trail = "·",
-  extends = "<",
-  precedes = ">",
   conceal = "┊",
   nbsp = "␣",
 }

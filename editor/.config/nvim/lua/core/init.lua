@@ -6,6 +6,21 @@ require("packer").startup(function()
   use({ "wbthomason/packer.nvim", opt = true })
 
   use("neovim/nvim-lspconfig")
+  use({"williamboman/nvim-lsp-installer",
+    config = function()
+      require("nvim-lsp-installer").setup({
+        ensure_installed = {"rust_analyzer", "sumneko_lua"},
+        ui = {
+          check_outdated_servers_on_open = true,
+          icons = {
+            server_installed = "✓",
+            server_pending = "➜",
+            server_uninstalled = "✗"
+          }
+        }
+      })
+    end
+  })
   use({ "tamago324/nlsp-settings.nvim" })
   use({ "jose-elias-alvarez/null-ls.nvim" })
   use({ "antoinemadec/FixCursorHold.nvim" }) -- Needed while issue https://github.com/neovim/neovim/issues/12587 is still open
@@ -13,7 +28,7 @@ require("packer").startup(function()
   use({
     "EdenEast/nightfox.nvim",
     config = function()
-      require("nightfox").load("nordfox")
+      vim.cmd("colorscheme nordfox")
     end,
   })
 
@@ -25,6 +40,7 @@ require("packer").startup(function()
     "nvim-treesitter/nvim-treesitter",
     requires = {
       "nvim-treesitter/nvim-treesitter-refactor",
+      "windwp/nvim-ts-autotag",
       {
         "nvim-treesitter/completion-treesitter",
         run = function()
@@ -39,12 +55,6 @@ require("packer").startup(function()
 
   use("nvim-treesitter/nvim-treesitter-textobjects")
 
-  use({
-    "kabouzeid/nvim-lspinstall",
-    config = function()
-      require("core.lspinstall").setup()
-    end,
-  })
 
   use({
     "L3MON4D3/LuaSnip",
@@ -55,6 +65,7 @@ require("packer").startup(function()
   use({
     "hrsh7th/nvim-cmp",
     config = function()
+      -- TODO: review necessary config
       require("core.completion").cmp_setup()
     end,
   })
@@ -66,7 +77,7 @@ require("packer").startup(function()
   use({ "nvim-lua/lsp-status.nvim" })
 
   use({
-    "shadmansaleh/lualine.nvim",
+    "nvim-lualine/lualine.nvim",
     requires = { "kyazdani42/nvim-web-devicons", opt = true },
     config = function()
       require("lualine").setup(require("core.lualine").setup())
@@ -139,4 +150,11 @@ require("packer").startup(function()
   --   end
   -- }
   use("sindrets/diffview.nvim")
+
+  use({
+    "simrat39/rust-tools.nvim",
+    config = function()
+      require("core.rust-tools").setup()
+    end,
+  })
 end)

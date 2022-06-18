@@ -1,5 +1,6 @@
 local M = {}
 
+-- TODO: Do I still want to use the snippets? I barely use them when coding
 local map = require("utils").new_map
 local ls = require("luasnip")
 local wk = require("which-key").register

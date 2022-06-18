@@ -1,3 +1,6 @@
+-- Used for getting status reports from the LSP client.
+-- Can be used to display context of where the cursor is and diagnostics from the current buffer.
+
 local nvim_status = require("lsp-status")
 local messages = require("lsp-status/messaging").messages
 
@@ -38,6 +41,7 @@ status.on_attach = function(client)
   vim.cmd([[augroup END]])
 end
 
+-- Used by language servers such as rust-analyzer to report progress when indexing project.
 status.progress_message = function()
   local buf_messages = messages()
   local msgs = {}

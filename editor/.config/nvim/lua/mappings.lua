@@ -33,6 +33,11 @@ function M.define_mappings()
   map("n", "<C-k>", "<C-w>k")
   map("n", "<C-l>", "<C-w>l")
 
+  map("n", "H", "0")
+  map("n", "L", "$")
+  map("o", "H", "0")
+  map("o", "L", "$")
+
   wk({
     ["<leader>q"] = {
       name = "quit",
@@ -58,6 +63,7 @@ function M.lsp_mappings(client, bufnr)
 
   buf_map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
   buf_map("i", "<C-g>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
+  buf_map("v", "<leader>la", ":<C-U>lua require('mappings').range_code_action()<CR>")
 
   wk({
     g = {
@@ -80,32 +86,36 @@ function M.lsp_mappings(client, bufnr)
     },
     ["<leader>D"] = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "show type definition" },
     ["<leader>rn"] = { "<cmd>lua vim.lsp.buf.rename()<CR>", "rename" },
+    d = {
+      name = "diagnostics",
+      l = { "<cmd>lua vim.diagnostic.open_float()<CR>", "show line" },
+      n = { "<cmd>lua vim.diagnostic.goto_next()<CR>", "next" },
+      p = { "<cmd>lua vim.diagnostic.goto_prev()<CR>", "prev" },
+    },
     ["<leader>d"] = {
       name = "diagnostics",
-      l = { "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", "show line" },
-      n = { "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", "next" },
-      p = { "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", "prev" },
-      d = { "<cmd>Telescope lsp_document_diagnostics<CR>", "document" },
+      d = { "<cmd>Telescope diagnostics<CR>", "document" },
       w = { "<cmd> Telescope lsp_workspace_diagnostics<CR>", "workspace" },
       q = { "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", "set loclist" },
     },
-    l = {
+    ["<leader>l"] = {
       name = "lsp",
-      p = { "<cmd>lua require'lsp.peek'.Peek('definition')<CR>", "Peek definition" }
-
-    }
+      -- a = { "<cmd>Telescope lsp_code_actions<CR>", "code actions" },
+      a = { "<cmd> lua vim.lsp.buf.code_action()<CR>", "code actions" },
+    },
   }, {
     buffer = bufnr,
   })
 
-  local ft = vim.fn.getbufvar(bufnr, "&filetype")
-
-  if ft ~= "java" then
-    wk({ ["<leader>ca"] = { "<cmd>Telescope lsp_code_actions<CR>", "code actions" } })
-    if client.resolved_capabilities.document_formatting then
-      buf_map("n", "<leader>ff", "<cmd>lua vim.lsp.buf.formatting()<CR>")
-    end
+  if client.resolved_capabilities.document_formatting then
+    buf_map("n", "<leader>ff", "<cmd>lua vim.lsp.buf.formatting()<CR>")
   end
+end
+
+function M.range_code_action()
+  local start_pos = vim.api.nvim_buf_get_mark(0, "<")
+  local end_pos = vim.api.nvim_buf_get_mark(0, ">")
+  vim.lsp.buf.range_code_action({}, start_pos, end_pos)
 end
 
 function M.dap_mappings(bufnr)
@@ -161,9 +171,37 @@ function M.gitsigns_mappings()
         "reset hunk",
       },
     },
-    ["<M-Up>"] = { '<cmd> echo "bum"' },
   }, {
     mode = "v",
+  })
+end
+
+function M.rust_mappings(bufnr)
+  wk({
+    ["<leader>r"] = {
+      name = "rust",
+      r = { "<cmd> RustRunnables<CR>", "runnables" },
+      j = { "<cmd> RustJoinLines<CR>", "join lines" },
+      m = { "<cmd> RustExpandMacro<CR>", "expand macro" },
+      c = { "<cmd> RustOpenCargo<CR>", "cargo" },
+      p = { "<cmd> RustParentModule<CR>", "parent module" },
+      u = { "<cmd> RustMoveItemUp<CR>", "item up" },
+      d = { "<cmd> RustMoveItemDown<CR>", "item down" },
+      b = { "<cmd> RustDebuggables<CR>", "debuggables" },
+      a = { "<cmd> RustHoverActions<CR>", "hover actions" },
+    },
+  }, {
+    buffer = bufnr,
+  })
+
+  wk({
+    ["<leader>r"] = {
+      name = "rust",
+      a = { "<cmd> RustHoverRange<CR>", "hover range" },
+    },
+  }, {
+    mode = "v",
+    buffer = bufnr,
   })
 end
 

@@ -73,4 +73,3 @@ nightfox_fish
 set -x NVM_DIR ~/.nvm
 nvm use default --silent
 
-set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin $PATH /Users/oliver.swanson/.ghcup/bin # ghcup-env

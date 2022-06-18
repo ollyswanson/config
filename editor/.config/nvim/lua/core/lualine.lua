@@ -1,6 +1,6 @@
 local M = {}
 
-local colors = require("nightfox.colors").init("nordfox")
+vim.cmd("colorscheme nordfox")
 
 local conditions = {
   buffer_not_empty = function()
@@ -65,20 +65,21 @@ ins_left({
   sources = { "nvim_lsp" },
   symbols = { error = " ", warn = " ", info = " " },
   diagnostics_color = {
-    color_error = { fg = colors.red },
-    color_warn = { fg = colors.yellow },
-    color_info = { fg = colors.cyan },
+    error = 'DiagnosticError',
+    warn = 'DiagnosticWarn',
+    info = 'DiagnosticInfo',
   },
+})
+
+ins_left({
+  require("lsp.status").progress_message,
+  padding = { left = 1 },
 })
 
 ins_right({
   "diff",
   symbols = { added = " ", modified = "柳", removed = " " },
-  diff_color = {
-    added = { fg = colors.green },
-    modified = { fg = colors.orange },
-    removed = { fg = colors.red },
-  },
+  colored = true,
   cond = conditions.hide_in_width,
   padding = { right = 1 },
 })

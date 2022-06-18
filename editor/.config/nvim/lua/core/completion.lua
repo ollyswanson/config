@@ -28,7 +28,7 @@ function M.cmp_setup()
         require("luasnip").lsp_expand(args.body)
       end,
     },
-    sources = { { name = "buffer" }, { name = "nvim_lsp" }, { name = "luasnip" } },
+    sources = { { name = "nvim_lsp" }, { name = "luasnip" } },
   })
 end
 

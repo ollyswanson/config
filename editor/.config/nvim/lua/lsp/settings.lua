@@ -1,4 +1,4 @@
-local ls_install_prefix = vim.fn.stdpath("data") .. "/lspinstall"
+local ls_install_prefix = vim.fn.stdpath("data") .. "/lsp_servers"
 
 -- TODO: This is related to nlsp, is it needed?
 -- Get schemas for language server settings
@@ -53,9 +53,9 @@ olsp = {
         provider = "sumneko_lua",
         setup = {
           cmd = {
-            ls_install_prefix .. "/lua/sumneko-lua-language-server",
+            ls_install_prefix .. "/sumneko_lua/extension/server/bin/lua-language-server",
             "-E",
-            ls_install_prefix .. "/lua/main.lua",
+            ls_install_prefix .. "/sumneko_lua/extension/server/bin/main.lua",
           },
           settings = {
             Lua = {
@@ -79,16 +79,6 @@ olsp = {
                 preloadFileSize = 1000,
               },
             },
-          },
-        },
-      },
-    },
-    rust = {
-      lsp = {
-        provider = "rust_analyzer",
-        setup = {
-          cmd = {
-            ls_install_prefix .. "/rust/rust-analyzer",
           },
         },
       },

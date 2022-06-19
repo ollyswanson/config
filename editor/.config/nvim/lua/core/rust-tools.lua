@@ -1,9 +1,10 @@
 local M = {}
 
--- This will probably be really useful
 local opts = {
   tools = { -- rust-tools options
+    autoSetHints = true,
     inlay_hints = {
+      only_current_line = false,
       show_parameter_hints = true,
       -- prefix for parameter hints
       parameter_hints_prefix = "◄",
@@ -14,9 +15,24 @@ local opts = {
     },
   },
   server = {
-    cmd = { vim.fn.stdpath("data") .. "/lspinstall/rust/rust-analyzer" },
+    cmd = { vim.fn.stdpath("data") .. "/lsp_servers/rust_analyzer/rust-analyzer" },
     on_attach = require("lsp").common_on_attach,
     on_init = require("lsp").common_on_init,
+    settings = {
+      ["rust-analyzer"] = {
+        assist = {
+          importEnforceGranularity = true,
+          importPrefix = "crate",
+        },
+        cargo = {
+          allFeatures = true,
+        },
+        -- enable clippy on save
+        checkOnSave = {
+          command = "clippy",
+        },
+      },
+    },
   },
 }
 

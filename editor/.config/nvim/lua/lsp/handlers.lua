@@ -41,19 +41,16 @@ function M.setup()
   vim.diagnostic.config(config)
   vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, float)
   vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, float)
-  vim.lsp.handlers["textDocument/publishDiagnostics"] =
-    vim.lsp.with(
-      vim.lsp.handlers["textDocument/publishDiagnostics"],
-      {
-        signs = {
-          severity_limit = "Error",
-        },
-        underline = {
-          severity_limit = "Warning",
-        },
-        virtual_text = true,
-      }
-    )
+  vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+    signs = {
+      severity_limit = "Error",
+    },
+    underline = {
+      severity_limit = "Warning",
+    },
+    virtual_text = true,
+    update_in_insert = true,
+  })
 end
 
 return M

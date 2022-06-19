@@ -28,6 +28,7 @@ function M.make_common_capabilities()
   return capabilities
 end
 
+
 function M.common_on_attach(client, bufnr)
   require("mappings").lsp_mappings(client, bufnr)
   require("lsp.status").on_attach(client)
@@ -37,21 +38,22 @@ end
 function M.setup_server(lang)
   local lsp = olsp.lang[lang].lsp
 
+
   if lsp.provider ~= nil and lsp.provider ~= "" then
     local lspconfig = require("lspconfig")
 
-    if lsp.setup.on_attach_override ~= nil then
-      lsp.setup.on_attach = M.common_on_attach
-    end
+    lsp.setup.on_attach = M.common_on_attach
+
     if not lsp.setup.capabilities then
       lsp.setup.capabilities = M.make_common_capabilities()
     end
 
     lspconfig[lsp.provider].setup(lsp.setup)
+
   end
 end
 
-function M.setup()
+ function M.setup()
   vim.lsp.protocol.CompletionItemKind = olsp.completion.item_kind
 
   -- set symbols for diagnostics

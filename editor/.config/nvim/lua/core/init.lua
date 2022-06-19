@@ -6,10 +6,11 @@ require("packer").startup(function()
   use({ "wbthomason/packer.nvim", opt = true })
 
   use("neovim/nvim-lspconfig")
-  use({"williamboman/nvim-lsp-installer",
+  use({ "williamboman/nvim-lsp-installer",
+
     config = function()
       require("nvim-lsp-installer").setup({
-        ensure_installed = {"rust_analyzer", "sumneko_lua"},
+        ensure_installed = { "rust_analyzer", "sumneko_lua" },
         ui = {
           check_outdated_servers_on_open = true,
           icons = {
@@ -21,9 +22,11 @@ require("packer").startup(function()
       })
     end
   })
+
   use({ "tamago324/nlsp-settings.nvim" })
   use({ "jose-elias-alvarez/null-ls.nvim" })
   use({ "antoinemadec/FixCursorHold.nvim" }) -- Needed while issue https://github.com/neovim/neovim/issues/12587 is still open
+  use { "stevearc/dressing.nvim" }
 
   use({
     "EdenEast/nightfox.nvim",
@@ -80,7 +83,9 @@ require("packer").startup(function()
     "nvim-lualine/lualine.nvim",
     requires = { "kyazdani42/nvim-web-devicons", opt = true },
     config = function()
-      require("lualine").setup(require("core.lualine").setup())
+      local setup = require("core.lualine").setup
+      ---@diagnostic disable-next-line: different-requires, redundant-parameter
+      require("lualine").setup(setup())
     end,
   })
 
@@ -121,7 +126,10 @@ require("packer").startup(function()
   use({
     "folke/which-key.nvim",
     config = function()
-      require("which-key").setup(require("core.which-key").settings)
+      ---@diagnostic disable-next-line: different-requires
+      local settings = require("core.which-key").settings
+      ---@diagnostic disable-next-line: different-requires, redundant-parameter
+      require("which-key").setup(settings)
     end,
   })
 
@@ -157,4 +165,12 @@ require("packer").startup(function()
       require("core.rust-tools").setup()
     end,
   })
+
+  use {
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+    config = function()
+      require("trouble").setup()
+    end
+  }
 end)

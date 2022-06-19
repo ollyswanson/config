@@ -103,6 +103,12 @@ function M.lsp_mappings(client, bufnr)
       -- a = { "<cmd>Telescope lsp_code_actions<CR>", "code actions" },
       a = { "<cmd> lua vim.lsp.buf.code_action()<CR>", "code actions" },
     },
+    ["<leader>x"] = {
+      name = "trouble",
+      x = { "<cmd>Trouble<CR>", "open" },
+      w = { "<cmd>Trouble workspace_diagnostics<CR>", "workspace" },
+      d = { "<cmd> Trouble document_diagnostics<CR>", "document" },
+    },
   }, {
     buffer = bufnr,
   })

@@ -100,13 +100,6 @@ require("packer").startup(function()
   use({ "nvim-lua/lsp_extensions.nvim" })
 
   use({
-    "mhartington/formatter.nvim",
-    config = function()
-      require("core.formatter")
-    end,
-  })
-
-  use({
     "b3nj5m1n/kommentary",
     config = function()
       require("core.kommentary")
@@ -173,4 +166,19 @@ require("packer").startup(function()
       require("trouble").setup()
     end
   }
+
+  use("ellisonleao/glow.nvim")
+
+  use {
+    "p00f/clangd_extensions.nvim",
+    config = function()
+      require("core.clangd").setup()
+    end
+  }
+
+  use {
+    "nathom/filetype.nvim",
+    config = require("core.filetype").setup
+  }
+
 end)

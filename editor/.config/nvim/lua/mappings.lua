@@ -72,6 +72,7 @@ function M.lsp_mappings(client, bufnr)
       D = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "declaration" },
       i = { '<cmd>lua require("telescope.builtin").lsp_implementations()<CR>', "implementation" },
       r = { '<cmd>lua require("telescope.builtin").lsp_references()<CR>', "references" },
+      t = { '<cmd>lua require("telescope.builtin").lsp_type_definitions()<CR>', "type" },
     },
     ["<leader>f"] = {
       s = { "<cmd>Telescope lsp_document_symbols<CR>", "document symbols" },
@@ -109,6 +110,10 @@ function M.lsp_mappings(client, bufnr)
       w = { "<cmd>Trouble workspace_diagnostics<CR>", "workspace" },
       d = { "<cmd> Trouble document_diagnostics<CR>", "document" },
     },
+    ["<leader>t"] = {
+      name = "telecscope",
+      w = { "<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<CR>", "workspace symbol" },
+    }
   }, {
     buffer = bufnr,
   })
@@ -160,7 +165,7 @@ function M.gitsigns_mappings()
       ["r"] = { '<cmd>lua require"gitsigns".reset_hunk()<CR>', "reset hunk" },
       ["R"] = { '<cmd>lua require"gitsigns".reset_buffer()<CR>', "reset buffer" },
       ["p"] = { '<cmd>lua require"gitsigns".preview_hunk()<CR>', "preview hunk" },
-      ["b"] = { '<cmd>lua require"gitsigns".blame_line(true)<CR>', "blame line" },
+      ["b"] = { '<cmd>lua require"gitsigns".blame_line({full = true})<CR>', "blame line" },
       ["S"] = { '<cmd>lua require"gitsigns".stage_buffer()<CR>', "stage buffer" },
       ["U"] = { '<cmd>lua require"gitsigns".reset_buffer_index()<CR>', "reset buffer index" },
     },
@@ -208,6 +213,15 @@ function M.rust_mappings(bufnr)
   }, {
     mode = "v",
     buffer = bufnr,
+  })
+end
+
+function M.c_mappings(bufnr)
+  wk({
+    ["<leader>c"] = {
+      name = "c",
+      h = { "<cmd> ClangdSwitchSourceHeader<CR>", "switch header" },
+    }
   })
 end
 

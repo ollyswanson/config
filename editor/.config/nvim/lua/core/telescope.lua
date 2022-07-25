@@ -41,7 +41,7 @@ function M.setup()
       g = { '<cmd>lua require("telescope.builtin").grep_string()<CR>', "show buffers" },
       p = { '<cmd>lua require("telescope.builtin").file_browser()<CR>', "file browser" },
       d = {
-        '<cmd>lua require("telescope.builtin").lsp_workspace_diagnostics()<CR>',
+        '<cmd>lua require("telescope.builtin").diagnostics()<CR>',
         "workspace diagnostics",
       },
       t = { '<cmd>lua require("telescope.builtin").resume()<CR>', "resume" },

@@ -24,7 +24,12 @@ opt("o", "ignorecase", true)
 opt("o", "smartcase", true)
 
 -- undo file
-opt("o", "undodir", "/Users/" .. vim.env.USER .. "/.vim/undodir")
+if vim.fn.has("linux") then
+  opt("o", "undodir", vim.env.HOME .. "/.vim/undodir")
+else
+  opt("o", "undodir", "/Users/" .. vim.env.USER .. "/.vim/undodir")
+end
+
 opt("b", "undofile", true)
 
 -- swap file

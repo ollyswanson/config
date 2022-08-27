@@ -13,19 +13,6 @@ function d
 	end
 end
 
-function replace_applicationyml
-	while test $PWD != "/"
-		if test -f gradlew
-			break
-		end
-		cd ..
-	end
-
-    if test $PWD != "/"
-        cp bin/test/application.yml bin/main/application.yml
-    end
-end
-
 function conf
     cd $DOTFILES
 end
@@ -33,14 +20,6 @@ end
 function cdf
     cd $HOME
     cd (fd --type directory --follow | fzf)
-end
-
-function idea
-    open -na "Intellij Idea.app" $argv
-end
-
-function clion
-    open -na "Clion.app" $argv
 end
 
 if functions -q fzf_key_bindings
@@ -61,16 +40,5 @@ setenv LESS_TERMCAP_so \e'[38;5;246m'    # begin standout-mode - info box
 setenv LESS_TERMCAP_ue \e'[0m'           # end underline
 setenv LESS_TERMCAP_us \e'[04;38;5;146m' # begin underline
 setenv EDITOR nvim
-setenv JAVA_HOME (/usr/libexec/java_home -v 11) 
-
-# nvm / node stuff
-function nvm
-   bass source (brew --prefix nvm)/nvm.sh --no-use ';' nvm $argv
-end
 
 nightfox_fish
-
-set -x NVM_DIR ~/.nvm
-nvm use default --silent
-
-set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME ; set -gx PATH $HOME/.cabal/bin $PATH /Users/oliver.swanson/.ghcup/bin # ghcup-env

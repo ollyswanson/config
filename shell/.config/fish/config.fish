@@ -22,6 +22,12 @@ function cdf
     cd (fd --type directory --follow | fzf)
 end
 
+function tree --argument level
+    set -q level[1]
+    or set level 3
+    exa --tree --all --git-ignore --level=$level
+end
+
 if functions -q fzf_key_bindings
     fzf_key_bindings
 end

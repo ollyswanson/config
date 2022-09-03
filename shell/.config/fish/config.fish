@@ -1,7 +1,7 @@
 abbr -a e nvim
 abbr -a gs 'git status'
 
-setenv DOTFILES $HOME/dotfiles
+setenv DOTFILES $HOME/configs
 
 # Type d to move to top parent dir which is a repository
 function d
@@ -26,6 +26,24 @@ function tree --argument level
     set -q level[1]
     or set level 3
     exa --tree --all --git-ignore --level=$level
+end
+
+function dstart
+    sudo systemctl start docker.service
+    sudo systemctl start containerd.service
+end
+
+function dstop
+    sudo systemctl stop docker.service
+    sudo systemctl stop containerd.service
+end
+
+function mydocker
+    docker build -t mydocker . && docker run --cap-add="SYS_ADMIN" mydocker $argv
+end
+
+function reload_shell
+    source ~/.config/fish/config.fish
 end
 
 if functions -q fzf_key_bindings

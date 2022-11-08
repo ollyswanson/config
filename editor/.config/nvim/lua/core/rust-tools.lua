@@ -19,9 +19,10 @@ local opts = {
     on_attach = require("lsp").make_on_attach(nil),
     settings = {
       ["rust-analyzer"] = {
-        assist = {
-          importEnforceGranularity = true,
-          importPrefix = "crate",
+        imports = {
+          granularity = {
+            group = "module"
+          }
         },
         cargo = {
           allFeatures = true,

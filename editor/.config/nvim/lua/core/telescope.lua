@@ -8,7 +8,7 @@ function M.setup()
   require("telescope").setup({
     defaults = {
       mappings = {
-        i = { ["<CR>"] = actions.select_default + actions.center },
+        i = { ["<CR>"] = actions.select_default + actions.center, ["<C-j>"] = { "<esc>", type = "command" } },
         n = { ["<CR>"] = actions.select_default + actions.center },
       },
       file_ignore_patterns = {

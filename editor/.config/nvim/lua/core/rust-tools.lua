@@ -16,8 +16,7 @@ local opts = {
   },
   server = {
     cmd = { vim.fn.stdpath("data") .. "/lsp_servers/rust_analyzer/rust-analyzer" },
-    on_attach = require("lsp").common_on_attach,
-    on_init = require("lsp").common_on_init,
+    on_attach = require("lsp").make_on_attach(nil),
     settings = {
       ["rust-analyzer"] = {
         assist = {

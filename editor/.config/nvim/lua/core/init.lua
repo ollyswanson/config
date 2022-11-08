@@ -6,11 +6,10 @@ require("packer").startup(function()
   use({ "wbthomason/packer.nvim", opt = true })
 
   use("neovim/nvim-lspconfig")
-  use({ "williamboman/nvim-lsp-installer",
+  use({ "williamboman/mason.nvim",
 
     config = function()
-      require("nvim-lsp-installer").setup({
-        ensure_installed = { "rust_analyzer", "sumneko_lua" },
+      require("mason").setup({
         ui = {
           check_outdated_servers_on_open = true,
           icons = {
@@ -23,11 +22,19 @@ require("packer").startup(function()
     end
   })
 
+  use ({"williamboman/mason-lspconfig.nvim", config = function()
+    require("mason-lspconfig").setup({
+        ensure_installed = { "rust_analyzer", "sumneko_lua" },
+    })
+		end
+  })
+
   use({ "tamago324/nlsp-settings.nvim" })
   use({ "jose-elias-alvarez/null-ls.nvim" })
   use({ "antoinemadec/FixCursorHold.nvim" }) -- Needed while issue https://github.com/neovim/neovim/issues/12587 is still open
   use { "stevearc/dressing.nvim" }
 
+  -- If there are any issues with this plugin, try `NightfoxCompile`
   use({
     "EdenEast/nightfox.nvim",
     config = function()
@@ -96,8 +103,6 @@ require("packer").startup(function()
       require("core.telescope").setup()
     end,
   })
-
-  use({ "nvim-lua/lsp_extensions.nvim" })
 
   use({
     "b3nj5m1n/kommentary",

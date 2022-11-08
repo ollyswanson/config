@@ -17,7 +17,7 @@ function M.make_common_capabilities()
 
   local cmp_status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
   if cmp_status_ok then
-    capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
+    capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
   end
 
   local lsp_status_ok, lsp_status = pcall(require, "lsp-status")
@@ -28,32 +28,34 @@ function M.make_common_capabilities()
   return capabilities
 end
 
-
-function M.common_on_attach(client, bufnr)
-  require("mappings").lsp_mappings(client, bufnr)
-  require("lsp.status").on_attach(client)
+function M.make_on_attach(lang_on_attach)
+  return function(client, bufnr)
+    require("mappings").lsp_mappings(client, bufnr)
+    require("lsp.status").on_attach(client)
+    if lang_on_attach ~= nil then
+      lang_on_attach(client, bufnr)
+    end
+  end
 end
 
 -- TODO: Make sure that this is called for each language.
 function M.setup_server(lang)
   local lsp = olsp.lang[lang].lsp
 
-
   if lsp.provider ~= nil and lsp.provider ~= "" then
     local lspconfig = require("lspconfig")
 
-    lsp.setup.on_attach = M.common_on_attach
+    lsp.setup.on_attach = M.make_on_attach(lsp.lang_on_attach)
 
     if not lsp.setup.capabilities then
       lsp.setup.capabilities = M.make_common_capabilities()
     end
 
-    lspconfig[lsp.provider].setup(lsp.setup)
-
+    lspconfig[lsp.provider].setup(lsp.setup or {})
   end
 end
 
- function M.setup()
+function M.setup()
   vim.lsp.protocol.CompletionItemKind = olsp.completion.item_kind
 
   -- set symbols for diagnostics

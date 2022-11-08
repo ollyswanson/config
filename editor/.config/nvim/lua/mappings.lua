@@ -93,12 +93,6 @@ function M.lsp_mappings(client, bufnr)
       n = { "<cmd>lua vim.diagnostic.goto_next()<CR>", "next" },
       p = { "<cmd>lua vim.diagnostic.goto_prev()<CR>", "prev" },
     },
-    ["<leader>d"] = {
-      name = "diagnostics",
-      d = { "<cmd>Telescope diagnostics<CR>", "document" },
-      w = { "<cmd> Telescope lsp_workspace_diagnostics<CR>", "workspace" },
-      q = { "<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>", "set loclist" },
-    },
     ["<leader>l"] = {
       name = "lsp",
       -- a = { "<cmd>Telescope lsp_code_actions<CR>", "code actions" },

@@ -67,14 +67,18 @@ setenv EDITOR nvim
 
 # nvm / node stuff
 function nvm
-   bass source (brew --prefix nvm)/nvm.sh --no-use ';' nvm $argv
+    if test (uname) = Darwin
+        bass source (brew --prefix nvm)/nvm.sh --no-use ';' nvm $argv
+    end
 end
 
-if type -q node 
+if test (uname) = Darwin
     set -x NVM_DIR ~/.nvm
     nvm use default --silent
 end
 
 nightfox_fish
 
-pyenv init - | source
+if type -p pyenv
+    pyenv init - | source
+end

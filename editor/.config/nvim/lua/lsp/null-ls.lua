@@ -15,6 +15,7 @@ function M.setup()
       diagnostics.flake8,
       formatting.black,
       formatting.isort,
+      formatting.shfmt,
     },
     on_attach = function(client, bufnr)
       if client.supports_method("textDocument/formatting") then

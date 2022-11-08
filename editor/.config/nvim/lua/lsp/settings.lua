@@ -40,6 +40,12 @@ olsp = {
     },
   },
   lang = {
+    bash = {
+      lsp = {
+        provider = "bashls",
+        setup = {}
+      }
+    },
     lua = {
       lsp = {
         provider = "sumneko_lua",

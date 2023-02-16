@@ -28,6 +28,10 @@ function tree --argument level
     exa --tree --all --git-ignore --level=$level
 end
 
+function jqf --argument file
+    echo '' | fzf --preview "jq {q} < ""$file"
+end
+
 function dstart
     sudo systemctl start docker.service
     sudo systemctl start containerd.service
@@ -82,3 +86,4 @@ nightfox_fish
 if type -p pyenv
     pyenv init - | source
 end
+

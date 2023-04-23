@@ -1,13 +1,13 @@
-local ls_install_prefix = vim.fn.stdpath("data") .. "/lsp_servers"
+local ls_install_prefix = vim.fn.stdpath("data") .. "/mason"
 
 -- TODO: Review whether completion should be moved somewhere else.
 olsp = {
   diagnostics = {
     signs = {
       { name = "DiagnosticSignError", text = "" },
-      { name = "DiagnosticSignWarn", text = "" },
-      { name = "DiagnosticSignHint", text = "" },
-      { name = "DiagnosticSignInfo", text = "" },
+      { name = "DiagnosticSignWarn",  text = "" },
+      { name = "DiagnosticSignHint",  text = "" },
+      { name = "DiagnosticSignInfo",  text = "" },
     },
   },
   completion = {
@@ -48,7 +48,7 @@ olsp = {
     },
     lua = {
       lsp = {
-        provider = "sumneko_lua",
+        provider = "lua_ls",
         setup = {
           settings = {
             Lua = {

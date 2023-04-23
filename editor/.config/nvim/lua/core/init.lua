@@ -6,8 +6,8 @@ require("packer").startup(function()
   use({ "wbthomason/packer.nvim", opt = true })
 
   use("neovim/nvim-lspconfig")
-  use({ "williamboman/mason.nvim",
-
+  use({
+    "williamboman/mason.nvim",
     config = function()
       require("mason").setup({
         ui = {
@@ -22,11 +22,13 @@ require("packer").startup(function()
     end
   })
 
-  use ({"williamboman/mason-lspconfig.nvim", config = function()
-    require("mason-lspconfig").setup({
-        ensure_installed = { "rust_analyzer", "sumneko_lua" },
-    })
-		end
+  use({
+    "williamboman/mason-lspconfig.nvim",
+    config = function()
+      require("mason-lspconfig").setup({
+        ensure_installed = {},
+      })
+    end
   })
 
   use({ "tamago324/nlsp-settings.nvim" })
@@ -185,5 +187,4 @@ require("packer").startup(function()
     "nathom/filetype.nvim",
     config = require("core.filetype").setup
   }
-
 end)

@@ -87,7 +87,8 @@ vim.opt.listchars = {
 vim.wo.colorcolumn = "99999"
 
 -- find a better place for these
-local file_types = "javascript,typescript,javascriptreact,typescriptreact,javascript.jsx,typescript.tsx,lua,yaml,java,c"
+local file_types =
+"javascript,typescript,javascriptreact,typescriptreact,javascript.jsx,typescript.tsx,lua,yaml,java,c,cpp"
 
 create_augroups({
   spacing = {

@@ -2,9 +2,8 @@ local M = {}
 
 local opts = {
   server = {
-    cmd = { vim.fn.stdpath("data") .. "/lsp_servers/clangd/clangd/bin/clangd" },
-    on_attach = require("lsp").common_on_attach,
-    on_init = require("lsp").common_on_init,
+    cmd = { vim.fn.stdpath("data") .. "/mason/bin/clangd" },
+    on_attach = require("lsp").make_on_attach(nil),
   }
 }
 

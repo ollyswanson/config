@@ -22,6 +22,11 @@ function cdf
     cd (fd --type directory --follow | fzf)
 end
 
+function proj
+    cd $HOME/passfort/MiniFort/projects
+    cd (fd --type directory --follow | fzf)
+end
+
 function tree --argument level
     set -q level[1]
     or set level 3
@@ -87,3 +92,12 @@ if type -p pyenv
     pyenv init - | source
 end
 
+if test -z (pgrep gpg-agent)
+    eval (gpg-agent --daemon --write-env-file ~/.gnupg/.gpg-agent-info)
+end
+
+setenv GPG_TTY (tty)
+
+setenv TILT_HOST '0.0.0.0'
+
+starship init fish | source

@@ -49,12 +49,12 @@ function M.define_mappings()
       n = { "<cmd> NvimTreeToggle<CR>", "toggle" },
       h = { "<cmd> NvimTreeFindFile<CR>", "open here" },
     },
-
     ["<leader>T"] = { "<cmd>terminal<CR>", "terminal" },
   })
 end
 
-function M.cmp_mappings() end
+function M.cmp_mappings()
+end
 
 function M.lsp_mappings(client, bufnr)
   local function buf_map(mode, lhs, rhs)
@@ -112,7 +112,7 @@ function M.lsp_mappings(client, bufnr)
     buffer = bufnr,
   })
 
-  if client.resolved_capabilities.document_formatting then
+  if client.server_capabilities.document_formatting then
     buf_map("n", "<leader>ff", "<cmd>lua vim.lsp.buf.formatting()<CR>")
   end
 end

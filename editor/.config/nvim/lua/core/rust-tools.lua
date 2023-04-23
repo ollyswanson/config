@@ -15,7 +15,7 @@ local opts = {
     },
   },
   server = {
-    cmd = { vim.fn.stdpath("data") .. "/lsp_servers/rust_analyzer/rust-analyzer" },
+    cmd = { vim.fn.stdpath("data") .. "/mason/bin/rust-analyzer" },
     on_attach = require("lsp").make_on_attach(nil),
     settings = {
       ["rust-analyzer"] = {
@@ -26,11 +26,17 @@ local opts = {
         },
         cargo = {
           allFeatures = true,
+          buildScripts = {
+            enable = true,
+          }
         },
         -- enable clippy on save
         checkOnSave = {
           command = "clippy",
         },
+        procMacro = {
+          enable = true,
+        }
       },
     },
   },

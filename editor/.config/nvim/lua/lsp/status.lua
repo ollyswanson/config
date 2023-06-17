@@ -36,9 +36,14 @@ end
 status.on_attach = function(client)
   nvim_status.on_attach(client)
 
-  vim.cmd([[augroup og_lsp_status]])
-  vim.cmd([[  autocmd CursorHold,BufEnter <buffer> lua require('lsp-status').update_current_function()]])
-  vim.cmd([[augroup END]])
+  vim.api.create_autocmd('CursorHold,BufEnter', {
+    group = vim.api.create_augroup('og_lsp_status', {}),
+    desc = 'LSP Status',
+    pattern = '*',
+    callback = function()
+      nvim_status.update_current_function()
+    end
+  })
 end
 
 -- Used by language servers such as rust-analyzer to report progress when indexing project.

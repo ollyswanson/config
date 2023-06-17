@@ -39,6 +39,7 @@ olsp = {
       "   (TypeParameter)",
     },
   },
+  -- Language servers for rust and C/C++ are set up using the relevant language tools plugins
   lang = {
     bash = {
       lsp = {
@@ -74,6 +75,12 @@ olsp = {
         },
       },
     },
+    nix = {
+      lsp = {
+        provider = "rnix",
+        setup = {},
+      }
+    },
     typescript = {
       lsp = {
         provider = "tsserver",
@@ -85,8 +92,9 @@ olsp = {
           },
         },
         settings = {},
-        lang_on_attach = function(client, bufnr)
-          client.resolved_capabilities.document_formatting = false
+        -- client, bufnr
+        lang_on_attach = function(client, _)
+          client.server_capabilities.document_formatting = false
         end
       }
     },

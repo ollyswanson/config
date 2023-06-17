@@ -33,7 +33,6 @@ require("packer").startup(function()
 
   use({ "tamago324/nlsp-settings.nvim" })
   use({ "jose-elias-alvarez/null-ls.nvim" })
-  use({ "antoinemadec/FixCursorHold.nvim" }) -- Needed while issue https://github.com/neovim/neovim/issues/12587 is still open
   use { "stevearc/dressing.nvim" }
 
   -- If there are any issues with this plugin, try `NightfoxCompile`

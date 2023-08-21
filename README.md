@@ -1,5 +1,9 @@
-# Configs
 
+
+# Deprecated 
+Now using Nix and home-manager: [Hem](https://github.com/ollyswanson/hem)
+
+# Configs
 If there are ever any problems with cargo run: `set -U fish_user_paths $HOME/.cargo/bin $fish_user_paths`
 
 ## Setting up Neovim
@@ -11,6 +15,6 @@ git clone https://github.com/wbthomason/packer.nvim\
  ~/.local/share/nvim/site/pack/packer/start/packer.nvim
 ```
 
-We can now [set up](https://www.chrisatmachine.com/Neovim/28-neovim-lua-development/) a `lua` lsp in order to make dealing with writing config files easier.
+We can now [set up](https://www.chrisatmachine.com/Neovim/28-neovim-lua-development/) a `lua` lsp in order to make dealing with writing config files easier.~
 
 
